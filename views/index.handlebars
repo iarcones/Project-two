@@ -4,18 +4,19 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col">
-            <h1 class="text-center pt-5 pb-3">Burger The Cast Arrays</h1>
+            <img src="logomovie.png" alt="logo" height="90" width="200">
+            <h1 class="text-center pt-5 pb-3">Educated Guess</h1>
 
-            <h2 class="text-center pt-3 pb-3">Order your burger 🍔🍟🍔🍟, eat your burger, gain some pounds</h2>
+            <h2 class="text-center pt-3 pb-3">The smart way to find movies.</h2>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <h2 class="text-center pt-3 pb-3 mt-2 mb-3 backcol">add a new burger</h2>
+            <h2 class="text-center pt-3 pb-3 mt-2 mb-3 backcol">Add a new movie or show here!</h2>
             <form class="create-form form-inline  mb-4 justify-content-center addburgers">
                 <div class="form-group">
-                    <label class="mr-2" for="addburger">Burger Name:</label>
+                    <label class="mr-2" for="addburger">Media Name:</label>
                     <input type="text" class="form-control-sm" id="addburger" name="name">
                 </div>
                 <button class="btn btn-success btn-sm ml-3" type="submit">add Burger</button>
@@ -26,7 +27,7 @@
             <h2 class="text-center pt-3 pb-3 mt-2 mb-3 backcol">client</h2>
             <form class="create-form form-inline  mb-4 justify-content-center register areaclient">
                 <div class="form-group">
-                    <label class="mr-2" for="addcustomer">Customer Name:</label>
+                    <label class="mr-2" for="addcustomer">Media Name:</label>
                     <input type="text" class="form-control-sm" id="addcustomer" name="name">
                 </div>
                 <button class="btn btn-success btn-sm ml-3" type="submit">register/login</button>
@@ -36,22 +37,22 @@
 
     <div class="row pt-2 pb-5">
         <div class="col">
-            <h2 class="text-center pt-3 pb-3 mb-4 backcol">Burgers!</h2>
+            <h2 class="text-center pt-3 pb-3 mb-4 backcol">Movies and shows!</h2>
             <ul class="pl-5">
                 {{#each burgers}}
                 <li>
                     <div class="row pb-2">
                         <div class="col-4">
-                            {{burger_name}}
+                            {{media_name}}
                         </div>
                         <div class="col-4">
                             <p class="text-right text-success">Ordered: </p>
                         </div>
                         <div class="col-1">
-                            {{burger_counter}}
+                            {{media_counter}}
                         </div>
                         <div class="col-3">
-                            <button class="devour btn btn-warning btn-sm" data-id="{{this.id}}">Devour it!</button>
+                            <button class="devour btn btn-warning btn-sm" data-id="{{this.id}}">Remove from list!</button>
                         </div>
                     </div>
                 </li>
@@ -61,22 +62,22 @@
         </div>
 
         <div class="col">
-            <h2 class="text-center pt-3 pb-3  mb-4 backcol">Burgers devoured!</h2>
+            <h2 class="text-center pt-3 pb-3  mb-4 backcol">Movies and shows added!</h2>
             <ul class="pl-5">
-                {{#each burgerscustomer}}
+                {{#each usermedia}}
                 <li>
                     <div class="row pb-2">
                         <div class="col-4">
-                            {{Burger.burger_name}}
+                            {{Media.media_name}}
                         </div>
                         <div class="col-4">
-                            <p class="text-right text-success">Devoured: </p>
+                            <p class="text-right text-success">Watched: </p>
                         </div>
                         <div class="col-1">
                             {{counter}}
                         </div>
                         <div class="col-3">
-                            <button class="devour btn btn-warning btn-sm" data-id="{{this.BurgerId}}">Reorder!</button>
+                            <button class="devour btn btn-warning btn-sm" data-id="{{this.MediaId}}">Reorder!</button>
                         </div>
                     </div>
                 </li>

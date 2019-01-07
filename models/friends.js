@@ -1,4 +1,3 @@
-
 console.log("customer model");
 module.exports = (sequelize, DataTypes) => {
   
@@ -18,4 +17,3 @@ module.exports = (sequelize, DataTypes) => {
   // Customer.sync();
   return Customer;
 };
-

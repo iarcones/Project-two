@@ -1,29 +1,29 @@
 
-console.log("customerburgers model");
+console.log("usermedia model");
 module.exports = (sequelize, DataTypes) => {
-  const Customerburger = sequelize.define("Customerburger", {
+  const usermedia = sequelize.define("usermedia", {
     counter: { 
       type: DataTypes.INTEGER, 
       defaultValue: 1 
     }
   });
 
-  Customerburger.associate = function(models) {
+  usermedia.associate = function(models) {
     // associations can be defined here
     console.log("inside customer burger associate customer")
     console.log(models)
-    Customerburger.belongsTo(models.Customer, {
+    usermedia.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-  Customerburger.associate = function(models) {
+  usermedia.associate = function(models) {
     // associations can be defined here
     console.log("inside customer burger associate burger")
     console.log(models)
-    Customerburger.belongsTo(models.Burger, {
+    usermedia.belongsTo(models.Media, {
       foreignKey: {
         allowNull: false
       }
@@ -31,6 +31,6 @@ module.exports = (sequelize, DataTypes) => {
   };
   // Syncs with DB
   // Customerburger.sync();
-  return Customerburger;
+  return usermedia;
 };
 
