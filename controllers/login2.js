@@ -25,10 +25,11 @@ $(document).ready(function () {
     storageBucket: "educated-guess.appspot.com",
     messagingSenderId: "950784072530",
     // Google Oauth client ID and discovery docs
-    clientId: "329432180812-j5jie5pqjehkhoutg3qkuq7aohnsntl0.apps.googleusercontent.com"
+    clientId: 
+    "950784072530-kr070pd267ccc8lae9iqkb1jv7fpa3og.apps.googleusercontent.com"
   };
   firebase.initializeApp(config);
-
+  // "329432180812-j5jie5pqjehkhoutg3qkuq7aohnsntl0.apps.googleusercontent.com"
   // ====================== login start ======================//
   var database = firebase.database();
   // Assign a variable to equal the Firebase pathway to the Interests folder
