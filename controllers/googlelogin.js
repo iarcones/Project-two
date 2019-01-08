@@ -60,9 +60,11 @@ $(document).ready(function () {
 
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+        console.log("listener-user")
       console.log(user)
       // User is signed in.
     } else {
+   
       console.log("no logged")
       // No user is signed in.
     }
