@@ -12,7 +12,7 @@ $(document).ready(function () {
     var router = express.Router();
 
     var db = require("../models");
-    
+
     // // // hide <div> with class of well on index.html when page loads
     // $(".well").hide();
 
@@ -61,7 +61,7 @@ $(document).ready(function () {
             // ...
 
             db.User.create({
-                user_name: req.body.name,
+                user_name: user,
                 user_email: email
             })
                 .then(function (data) {

@@ -7,7 +7,7 @@ var db = require("../models");
 
 
 router.get("/", function (req, res) {
-    var placeHolder = {};
+var placeHolder = {};
 
 // Run the axios.get function...
 // The axios.get function takes in a URL and returns a promise (just like $.ajax)
