@@ -40,7 +40,11 @@ $(document).ready(function () {
             console.log(result);
             var token = result.credential.accessToken;
             // The signed-in user info.
-            var user = result.user;
+            var user = result.user.displayName;
+            console.log(user, email)
+            var email = result.user.email;
+            console.log(user, email)
+           
             // ...
 
             // db.User.create({
