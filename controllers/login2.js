@@ -5,14 +5,15 @@ $(document).ready(function () {
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDLk-BHKWaXv4zCAWa9Ekc51UalnuS5yjo",
-    authDomain: "travelbook-1543375707755.firebaseapp.com",
-    databaseURL: "https://travelbook-1543375707755.firebaseio.com",
-    projectId: "travelbook-1543375707755",
-    storageBucket: "travelbook-1543375707755.appspot.com",
-    messagingSenderId: "329432180812",
+    apiKey: "AIzaSyAQdQKzg61WjdyOQ3fFTnu5lX5Z6YOsw78",
+    authDomain: "educated-guess.firebaseapp.com",
+    databaseURL: "https://educated-guess.firebaseio.com",
+    projectId: "educated-guess",
+    storageBucket: "educated-guess.appspot.com",
+    messagingSenderId: "950784072530",
     // Google Oauth client ID and discovery docs
-    clientId: "329432180812-j5jie5pqjehkhoutg3qkuq7aohnsntl0.apps.googleusercontent.com"
+    clientId:
+      "950784072530-kr070pd267ccc8lae9iqkb1jv7fpa3og.apps.googleusercontent.com"
   };
   firebase.initializeApp(config);
 
