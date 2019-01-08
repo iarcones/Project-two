@@ -27,34 +27,7 @@
 </head>
 
 <body class="auth-false">
-  <!-- Header -->
-  <header id="masthead">
-    <div class="container">
-      <img src="assets/photos/logo.png" class="auth-image" alt="logo">
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="profile.html">My Profile</a>
-      </nav>
-    </div>
-  </header>
-  <!-- Empty field alert modal -->
-  <div class="modal fade" id="emptyField" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 style="color:red;" class="modal-title">Alert:</h4>
-        </div>
-        <div class="modal-body">
-          <p>Please fill out the location field and re-submit</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <!-- Modal when button is clicked to add restaurant -->
   <div class="modal fade" id="addToProfModal" role="dialog">
     <div class="modal-dialog">
@@ -143,15 +116,8 @@
       <div class="userAuth authenticated">
         <button type="submit" class="button" id="logout">Logout</button>
       </div>
-      <h3>Welcome to TravelBook! </h3><span id="user-info"></span>
-      <div class="form-contain">
-        <h3>Search for attractions or restaurants you like in any city!</h3>
-        <form class="yelp">
-          <input placeholder="location" id="location" type="text">
-          <input placeholder="category" type="text" id="category">
-          <input type="submit" id="submit-search-form">
-        </form>
-      </div>
+      <h3>Welcome to Educated Guess! </h3><span id="user-info"></span>
+ 
       <div class="well"></div>
 
       <div id="map"></div>
@@ -159,19 +125,7 @@
 
   </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <!-- Add font awesome icons -->
-      <a href="#" class="fa fa-facebook"></a>
-      <a href="#" class="fa fa-twitter"></a>
-      <a href="#" class="fa fa-google"></a>
-      <a href="#" class="fa fa-linkedin"></a>
-      <a href="#" class="fa fa-instagram"></a>
-      <a href="#" class="fa fa-pinterest"></a>
-      Copyright &copy;
-    </div>
-  </footer>
+ 
 
   <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
   <script src="controllers/login2.js"></script>
