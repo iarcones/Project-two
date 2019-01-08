@@ -1,19 +1,23 @@
 console.log("customer model");
 module.exports = (sequelize, DataTypes) => {
   
-  const Customer = sequelize.define("Customer", {
-    customer_name:  {
+  const Friend = sequelize.define("Friend", {
+    friend_email:  {
       type: DataTypes.STRING,
       validate: {len: [1]}
     },
   });
-  Customer.associate = function(models) {
-    console.log("inside customer  associate")
-    Customer.hasMany(models.Customerburger);
-    };
+  Friend.associate = function(models) {
+    console.log("inside friend  associate")
+    Friend.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
     // associations can be defined here
   
   // Syncs with DB
   // Customer.sync();
-  return Customer;
+  return Friend;
 };
