@@ -29,7 +29,9 @@ axios
       placeHolder[i]=[response.data.results[i].title,"https://image.tmdb.org/t/p/w600_and_h900_bestv2"+response.data.results[i].poster_path];
       
     };
+    res.render
     console.log(placeHolder);
+    
     return placeHolder;
   })
   .catch(function(error) {

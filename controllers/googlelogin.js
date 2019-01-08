@@ -70,6 +70,24 @@ $(document).ready(function () {
                 });
 
         }).catch(function (error) {
+
+            db.User.findOne({ where: {user_email: email} }).then(function (data) {
+                console.log(data)
+              if (data){
+                  console.log("rec exist");
+              }
+              else{
+                db.User.create({
+                    user_name: user,
+                    user_email: email
+                })
+                    .then(function (data) {
+                        console.log(data)
+                        res.json(data);
+                    });
+              }
+              })
+              
             console.log("error");
             console.log(error);
             // Handle Errors here.
