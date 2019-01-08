@@ -7,6 +7,12 @@ var db = require("../models");
 
 $(document).ready(function () {
 
+    var express = require("express");
+
+    var router = express.Router();
+
+    var db = require("../models");
+    
     // // // hide <div> with class of well on index.html when page loads
     // $(".well").hide();
 
@@ -51,7 +57,7 @@ $(document).ready(function () {
             console.log(user, email)
             var email = result.user.email;
             console.log(user, email)
-           
+
             // ...
 
             db.User.create({
@@ -60,8 +66,8 @@ $(document).ready(function () {
             })
                 .then(function (data) {
                     console.log(data)
-                  res.json(data);
-               });
+                    res.json(data);
+                });
 
         }).catch(function (error) {
             console.log("error");
@@ -79,54 +85,54 @@ $(document).ready(function () {
     });
 
 
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        console.log("listener-user")
-      console.log(user)
-      // User is signed in.
-    } else {
-   
-      console.log("no logged")
-      // No user is signed in.
-    }
-  });
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            console.log("listener-user")
+            console.log(user)
+            // User is signed in.
+        } else {
 
-        // firebase.auth().signInWithRedirect(provider);
-
-
-        // firebase.auth().getRedirectResult().then(function (result) {
-        //     if (result.credential) {
-        //         // This gives you a Google Access Token. You can use it to access the Google API.
-        //         var token = result.credential.accessToken;
-        //         console.log("token: ", token)
-        //         // ...
-        //     }
-        //     // The signed-in user info.
-        //     var user = result.user;
-        //     console.log("user: ", user)
-        // }).catch(function (error) {
-        //     console.log("error1");
-        //     console.log(error);
-        //     // Handle Errors here.
-        //     var errorCode = error.code;
-        //     var errorMessage = error.message;
-        //     // The email of the user's account used.
-        //     var email = error.email;
-        //     // The firebase.auth.AuthCredential type that was used.
-        //     var credential = error.credential;
-        //     // ...
-        // });
-
-        // Sign out using built-in Firebase function on click of logout button
-        $('#logout').on('click', function (e) {
-            firebase.auth().signOut().then(function () {
-                // Sign-out successful.
-            }).catch(function (error) {
-                // An error happened.
-            });
-        });
-
-
-
-
+            console.log("no logged")
+            // No user is signed in.
+        }
     });
+
+    // firebase.auth().signInWithRedirect(provider);
+
+
+    // firebase.auth().getRedirectResult().then(function (result) {
+    //     if (result.credential) {
+    //         // This gives you a Google Access Token. You can use it to access the Google API.
+    //         var token = result.credential.accessToken;
+    //         console.log("token: ", token)
+    //         // ...
+    //     }
+    //     // The signed-in user info.
+    //     var user = result.user;
+    //     console.log("user: ", user)
+    // }).catch(function (error) {
+    //     console.log("error1");
+    //     console.log(error);
+    //     // Handle Errors here.
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     // The email of the user's account used.
+    //     var email = error.email;
+    //     // The firebase.auth.AuthCredential type that was used.
+    //     var credential = error.credential;
+    //     // ...
+    // });
+
+    // Sign out using built-in Firebase function on click of logout button
+    $('#logout').on('click', function (e) {
+        firebase.auth().signOut().then(function () {
+            // Sign-out successful.
+        }).catch(function (error) {
+            // An error happened.
+        });
+    });
+
+
+
+
+});
