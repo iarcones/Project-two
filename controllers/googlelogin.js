@@ -3,7 +3,7 @@ $(document).ready(function () {
     // // // hide <div> with class of well on index.html when page loads
     // $(".well").hide();
 
-    // Initialize Firebase
+    // Initialize Firebase //// MOVE ALL OF THIS TO THE .env file
     var config = {
         apiKey: "AIzaSyAQdQKzg61WjdyOQ3fFTnu5lX5Z6YOsw78",
         authDomain: "educated-guess.firebaseapp.com",
@@ -42,6 +42,14 @@ $(document).ready(function () {
             // The signed-in user info.
             var user = result.user;
             // ...
+
+            // db.User.create({
+            //     user_name: req.body.name,
+            // })
+            //     .then(function (dbBurger) {
+            //         res.json(dbBurger);
+            //     });
+
         }).catch(function (error) {
             console.log("error");
             console.log(error);
