@@ -18,18 +18,20 @@
     {{!-- column 1 for the row of movies and shows --}}
     {{!-- this column shows tv shows --}}
 
-    {{!-- <div class="row">
+    <div class="row">
         <div class="col-lg-12">
             <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
 
-
+ {{#each movies}}
             <div class="api-call-movies">
+      {{name}}
+
 
             </div>
 
         </div>
 
-    </div> --}}
+    </div>
 </div>
 
 <script>

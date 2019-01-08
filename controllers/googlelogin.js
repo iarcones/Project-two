@@ -5,7 +5,7 @@ var router = express.Router();
 // Import the model (burger.js) to use its database functions.
 var db = require("../models");
 
-$(document).ready(function () {
+
 
     var express = require("express");
 
@@ -156,4 +156,3 @@ $(document).ready(function () {
 
 
 
-});
