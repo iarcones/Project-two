@@ -9,34 +9,48 @@ var db = require("../models");
 
 router.get("/", function (req, res) {
 
+    // var topTen = require("topTen");
+    var x=module.exports.placeHolder;
+    console.log(x);
+
+    /////
+    res.render("index");
+    // var hbsObject = {
+    //     movies: topTen
+    // };
+    
+    // console.log("hbsObject", hbsObject);
+    // res.render("index", hbsObject);
+
+    ////
     // var customerName = req.cookies.customername;
     // var customerId = req.cookies.customerid;
 
-    db.Media.findAll({
-        order: [['omdb_rating', 'DESC']],
-        limit: 10 
-    }).then(function (data) {
-        var hbsObject = {
-            burgers: data
-        };
-        res.render("index", hbsObject);
+    // db.Media.findAll({
+    //     order: [['omdb_rating', 'DESC']],
+    //     limit: 10 
+    // }).then(function (data) {
+    //     var hbsObject = {
+    //         burgers: data
+    //     };
+    //     res.render("index", hbsObject);
 
-        // db.Customerburger.findAll({
-        //     include: [{ association: 'Burger' }
-        //     ],
-        //     where: {
-        //         CustomerId: customerId,
-        //     },
-        //     order: [
-        //         ['counter', 'DESC']
-        //     ],
-        // }).then(function (dbBurgerCustomer) {
-        //     hbsObject.burgerscustomer = dbBurgerCustomer;
-        //     res.render("index", hbsObject);
-        // });
+    // db.Customerburger.findAll({
+    //     include: [{ association: 'Burger' }
+    //     ],
+    //     where: {
+    //         CustomerId: customerId,
+    //     },
+    //     order: [
+    //         ['counter', 'DESC']
+    //     ],
+    // }).then(function (dbBurgerCustomer) {
+    //     hbsObject.burgerscustomer = dbBurgerCustomer;
+    //     res.render("index", hbsObject);
+    // });
 
-    });
 });
+
 
 router.post("/api/burgers", function (req, res) {
     db.Burger.create({

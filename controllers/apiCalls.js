@@ -1,18 +1,34 @@
-// ***before running make sure to npm i axios***
 // Grab the axios package...
+var module = { exports: {} };
+var exports = module.exports;
+
+
+
 var axios = require("axios");
+var placeHolder = {};
 
 // Run the axios.get function...
 // The axios.get function takes in a URL and returns a promise (just like $.ajax)
 axios
-  .get("https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018")
+  .get("https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019")
   
   
+  //https://api.themoviedb.org/3/movie/now_playing?api_key=32a91bda53591f9bf3267b9088686a93&primary_release_year=2018&sort_by=vote_average.desc
+
+  //https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018
 
   .then(function(response) {
     // If the axios was successful...
     // Then log the body from the site!
-    console.log(response.data);
+    //console.log(response.data);
+    var topTen = 0;
+    for (var i =0; i<10; i++){  ///WHERE TOP TEN GETS CREATED
+      console.log(response.data.results[i].title);
+      placeHolder[i]=[response.data.results[i].title,"https://image.tmdb.org/t/p/w600_and_h900_bestv2"+response.data.results[i].poster_path];
+      
+    };
+    console.log(placeHolder);
+    return placeHolder;
   })
   .catch(function(error) {
     if (error.response) {
@@ -31,3 +47,7 @@ axios
     }
     console.log(error.config);
   });
+//module.exports = "topTen";
+// your code
+//use module.exports.placeHolder
+return module.exports;

@@ -1,0 +1,212 @@
+{{!-- my code here --}}
+
+{{!-- this is the page the user sees when they are NOT LOGGED IN --}}
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12">
+            <img src="../public/assets/img/logomovie.png" alt="logo" height="90" width="200">
+            <h1 class="text-center">Educated Guess</h1>
+
+            <h2 class="text-center">The smart way to find movies.</h2>
+        </div>
+    </div>
+
+    
+
+    {{!-- column 1 for the row of movies and shows --}}
+    {{!-- this column shows tv shows --}}
+
+    <div class="row">
+    <div class="col-lg-12">
+        <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
+        
+        
+        <div class="api-call-movies">
+
+        </div>
+
+
+        </form>
+    </div>
+
+    </div>
+</div>
+    {{!-- column 2 for the row of movies and shows --}}
+    {{!-- this column shows TV SHOWS--}}
+    {{!-- <div class="col">
+        <h2 class="text-center pt-3 pb-3 mb-4 backcol">Movies and shows!</h2>
+        <ul class="pl-5">
+            {{#each movies}}
+            <li>
+                <div class="row pb-2">
+                    <div class="col-4">
+                        {{media_name}}
+                    </div>
+                    <div class="col-4">
+                        <p class="text-right text-success">Ordered: </p>
+                    </div>
+                    <div class="col-1">
+                        {{media_counter}}
+                    </div>
+                    <div class="col-3">
+                        <button class="devour btn btn-warning btn-sm" data-id="{{this.id}}">Remove from list!</button>
+                    </div>
+                </div>
+            </li>
+
+            {{/each}}
+        </ul>
+    </div> --}}
+
+
+
+{{!-- add to user PROFILE PAGE-once user is logged in --}}
+
+{{!-- this is where the user adds new movies and shows --}}
+    {{!-- this should go on the page the user sees once they ARE LOGGED IN --}}
+
+    {{!-- <div class="row">
+        <div class="col">
+            <h2 class="text-center pt-3 pb-3 mt-2 mb-3 backcol">Add a new movie or show here!</h2>
+            <form class="create-form form-inline  mb-4 justify-content-center addburgers">
+                <div class="form-group">
+                    <label class="mr-2" for="addburger">Movie or show name:</label>
+                    <input type="text" class="form-control-sm" id="addburger" name="name">
+                </div>
+                <button class="btn btn-success btn-sm ml-3" type="submit">Add it!</button>
+            </form>
+        </div>
+
+    </div> --}}
+
+{{!-- <div class="row pt-2 pb-5">
+
+
+    <div class="col">
+        <h2 class="text-center pt-3 pb-3  mb-4 backcol"> Movies and shows added!</h2>
+        <ul class="pl-5">
+            {{#each media_name}}
+            <li>
+                <div class="row pb-2">
+                    <div class="col-4">
+                        {{Media.media_name}}
+                    </div>
+                    <div class="col-4">
+                        <p class="text-right text-success">Watched: </p>
+                    </div>
+                    <div class="col-1">
+                        {{counter}}
+                    </div>
+                    <div class="col-3">
+                        <button class="devour btn btn-warning btn-sm" data-id="{{this.MediaId}}">Reorder!</button>
+                    </div>
+                </div>
+            </li>
+
+            {{/each}}
+        </ul>
+    </div>
+</div>   --}}
+
+
+
+<script>
+    // Make sure we wait to attach our handlers until the DOM is fully loaded.
+    $(function () {
+
+        var customerName = readCookie("customername");
+        var customerId = readCookie("customerid");
+
+        if (customerId !== null) {
+
+            $(".areaclient").empty();
+            $(".areaclient").append("<h3>Hi " + customerName + ", how are you doing today?</h3>");
+
+        }
+
+        $(".addburgers").on("submit", function (event) {
+            // Make sure to preventDefault on a submit event.
+            event.preventDefault();
+
+            var newBurger = {
+                name: $("#addburger").val().trim(),
+            };
+
+            // Send the POST request.
+            $.ajax("/api/burgers", {
+                type: "POST",
+                data: newBurger
+            }).then(
+                function () {
+                    // Reload the page to get the updated list
+                    location.reload();
+                }
+            )x
+        });
+
+        $(".devour").on("click", function (event) {
+
+            var id = $(this).data("id");
+
+            // Send the PUT request.
+            $.ajax("/api/devoured/" + id + "/" + customerId, {
+                type: "PUT",
+                data: true
+            }).then(
+                function () {
+                    // Reload the page to get the updated list
+                    location.reload();
+                }
+            );
+        });
+
+        $(".register").on("submit", function (event) {
+            // Make sure to preventDefault on a submit event.
+            event.preventDefault();
+
+            // Getting the value from the localStorage
+            customerName = $("#addcustomer").val().trim();
+            var newCustomer = {
+                name: customerName,
+            };
+
+            // Send the POST request.
+            $.ajax("/api/customers", {
+                type: "POST",
+                data: newCustomer
+            }).then(
+                function (data) {
+
+                    // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
+                    document.cookie = "customername=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                    document.cookie = "customerid=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+                    // Store the username as a cookie using "document.cookie"
+                    document.cookie = "customername=" + data.customer_name + ";";
+                    document.cookie = "customerid=" + data.id + ";";
+
+                    location.reload();
+
+                });
+        });
+
+        // NOTE: In order to modify cookies, we must access them over a secure connection e.i = https, localhost:
+        // Needed to create this function to readCookies. Essentially it splits up the cookie list
+        // See the working app at http://cookie-example-rcb.herokuapp.com/ or by opening with Firefox or Safari
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(";");
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === " ") c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) {
+                    return c.substring(nameEQ.length, c.length);
+                }
+            }
+            return null;
+        }
+
+    });
+
+
+</script>

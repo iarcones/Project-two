@@ -47,12 +47,14 @@ $(document).ready(function () {
            
             // ...
 
-            // db.User.create({
-            //     user_name: req.body.name,
-            // })
-            //     .then(function (dbBurger) {
-            //         res.json(dbBurger);
-            //     });
+            db.User.create({
+                user_name: req.body.name,
+                user_email: email
+            })
+                .then(function (data) {
+                    console.log(data)
+                  res.json(data);
+               });
 
         }).catch(function (error) {
             console.log("error");
