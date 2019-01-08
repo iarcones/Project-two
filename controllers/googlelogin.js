@@ -43,6 +43,8 @@ $(document).ready(function () {
             var user = result.user;
             // ...
         }).catch(function (error) {
+            console.log("error");
+            console.log(error);
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
