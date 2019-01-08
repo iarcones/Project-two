@@ -54,55 +54,55 @@ $(document).ready(function () {
     });
   });
 
-  // Register with Firebase
-  $('#registerForm').on('submit', function (e) {
-    // Prevent default action of submitting form then refreshing the page
-    e.preventDefault();
-    // Hide the signUpModal
-    $('#signUpModal').modal('hide');
-    // Assign a variable locally to hold the data entered into the sign up form
-    var data = {
-      email: $('#registerEmail').val(), // Get the email
-      firstName: $('#registerFirstName').val(), // Get firstName
-      lastName: $('#registerLastName').val(), // Get lastName
-    };
-    // Assign a variable locally to hold the password data for comparison
-    var passwords = {
-      password: $('#registerPassword').val(), // Get the password
-      cPassword: $('#registerConfirmPassword').val(), // Get the confirm password
-    }
-    // Make sure none of the fields important to logging in are empty
-    if (data.email != '' && passwords.password != '' && passwords.cPassword != '') {
-      // If they're filled, check if the passwords match
-      if (passwords.password == passwords.cPassword) {
-        // Create the user if the passwords match, sending the email and password to Google Firebase's build-in authentication system
-        firebase.auth()
-          .createUserWithEmailAndPassword(data.email, passwords.password)
-          .then(function (user) {
-            return user.updateProfile({
-              displayName: data.firstName + ' ' + data.lastName
-            })
-          })
-          .then(function (user) {
-            // Reassign variable auth to the user information so that user needs to be logged in to save data
-            auth = user;
-            // Save the profile data
-            usersRef.child(user.uid).set(data)
-              .then(function () {
-                // Log that the user has been added with the user's UID
-                // console.log("User Information Saved:", user.uid);
-              })
-          })
-          .catch(function (error) { // Check for errors
-            // console.log("Error creating user:", error);
-            // console.log("Error creating user:", error.code);
-          });
-      } else {
-        // Log that the password and confirm password didn't match
-        // console.log("ERROR: Passwords didn't match");
-      }
-    }
-  });
+  // // Register with Firebase
+  // $('#registerForm').on('submit', function (e) {
+  //   // Prevent default action of submitting form then refreshing the page
+  //   e.preventDefault();
+  //   // Hide the signUpModal
+  //   $('#signUpModal').modal('hide');
+  //   // Assign a variable locally to hold the data entered into the sign up form
+  //   var data = {
+  //     email: $('#registerEmail').val(), // Get the email
+  //     firstName: $('#registerFirstName').val(), // Get firstName
+  //     lastName: $('#registerLastName').val(), // Get lastName
+  //   };
+  //   // Assign a variable locally to hold the password data for comparison
+  //   var passwords = {
+  //     password: $('#registerPassword').val(), // Get the password
+  //     cPassword: $('#registerConfirmPassword').val(), // Get the confirm password
+  //   }
+  //   // Make sure none of the fields important to logging in are empty
+  //   if (data.email != '' && passwords.password != '' && passwords.cPassword != '') {
+  //     // If they're filled, check if the passwords match
+  //     if (passwords.password == passwords.cPassword) {
+  //       // Create the user if the passwords match, sending the email and password to Google Firebase's build-in authentication system
+  //       firebase.auth()
+  //         .createUserWithEmailAndPassword(data.email, passwords.password)
+  //         .then(function (user) {
+  //           return user.updateProfile({
+  //             displayName: data.firstName + ' ' + data.lastName
+  //           })
+  //         })
+  //         .then(function (user) {
+  //           // Reassign variable auth to the user information so that user needs to be logged in to save data
+  //           auth = user;
+  //           // Save the profile data
+  //           usersRef.child(user.uid).set(data)
+  //             .then(function () {
+  //               // Log that the user has been added with the user's UID
+  //               // console.log("User Information Saved:", user.uid);
+  //             })
+  //         })
+  //         .catch(function (error) { // Check for errors
+  //           // console.log("Error creating user:", error);
+  //           // console.log("Error creating user:", error.code);
+  //         });
+  //     } else {
+  //       // Log that the password and confirm password didn't match
+  //       // console.log("ERROR: Passwords didn't match");
+  //     }
+  //   }
+  // });
 
   //  // Modal for when something is added to profile 
   $("body").on("click", ".add-button", function (e) {
@@ -119,35 +119,35 @@ $(document).ready(function () {
     $('#addToProfModal').modal('hide');
   }
 
-  // Login when form with id of loginForm is submitted
-  $('#loginForm').on('submit', function (e) {
-    // Prevent default action of submitting then refreshing the page
-    e.preventDefault();
-    // Hide the loginModal
-    $('#loginModal').modal('hide');
-    // Make sure the login email and login password fields aren't empty
-    if ($('#loginEmail').val() != '' && $('#loginPassword').val() != '') {
-      // If they're not, assign a variable to hold the input field data
-      var data = {
-        email: $('#loginEmail').val(),
-        password: $('#loginPassword').val()
-      };
-      // Send authentication request to Firebase with the email and password provided by user
-      firebase.auth().signInWithEmailAndPassword(data.email, data.password)
-        .then(function (authData) {
-          // Reassign variable auth to the data returned by the Firebase authentication process (basically, so it's not null anymore)
-          auth = authData;
-          // Log that user is logged in
-          // console.log("Successfully logged in");
-        })
-        .catch(function (error) { // Check for errors
-          // console.log("Login Failed!", error);
-          // console.log("Login Failed Code", error.code);
-          // Re-show loginModal if the login failed to authenticate
-          $('#loginModal').modal('show');
-        });
-    }
-  });
+  // // Login when form with id of loginForm is submitted
+  // $('#loginForm').on('submit', function (e) {
+  //   // Prevent default action of submitting then refreshing the page
+  //   e.preventDefault();
+  //   // Hide the loginModal
+  //   $('#loginModal').modal('hide');
+  //   // Make sure the login email and login password fields aren't empty
+  //   if ($('#loginEmail').val() != '' && $('#loginPassword').val() != '') {
+  //     // If they're not, assign a variable to hold the input field data
+  //     var data = {
+  //       email: $('#loginEmail').val(),
+  //       password: $('#loginPassword').val()
+  //     };
+  //     // Send authentication request to Firebase with the email and password provided by user
+  //     firebase.auth().signInWithEmailAndPassword(data.email, data.password)
+  //       .then(function (authData) {
+  //         // Reassign variable auth to the data returned by the Firebase authentication process (basically, so it's not null anymore)
+  //         auth = authData;
+  //         // Log that user is logged in
+  //         // console.log("Successfully logged in");
+  //       })
+  //       .catch(function (error) { // Check for errors
+  //         // console.log("Login Failed!", error);
+  //         // console.log("Login Failed Code", error.code);
+  //         // Re-show loginModal if the login failed to authenticate
+  //         $('#loginModal').modal('show');
+  //       });
+  //   }
+  // });
 
   // Sign out using built-in Firebase function on click of logout button
   $('#logout').on('click', function (e) {
