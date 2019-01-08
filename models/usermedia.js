@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 
   usermedia.associate = function(models) {
     // associations can be defined here
-    console.log("inside customer burger associate customer")
+   
     console.log(models)
     usermedia.belongsTo(models.User, {
       foreignKey: {
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 
   usermedia.associate = function(models) {
     // associations can be defined here
-    console.log("inside customer burger associate burger")
+    
     console.log(models)
     usermedia.belongsTo(models.Media, {
       foreignKey: {

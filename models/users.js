@@ -8,10 +8,11 @@ module.exports = (sequelize, DataTypes) => {
       validate: {len: [1]}
     },
     user_email: {
-      type: DataTypes.email
+      type: DataTypes.STRING,
+      validate: {isEmail: true}
     }
   });
-  Customer.associate = function(models) {
+  User.associate = function(models) {
     console.log("inside user  associate")
     User.hasMany(models.usermedia);
     };

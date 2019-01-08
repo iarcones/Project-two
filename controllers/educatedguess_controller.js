@@ -9,31 +9,31 @@ var db = require("../models");
 
 router.get("/", function (req, res) {
 
-    var customerName = req.cookies.customername;
-    var customerId = req.cookies.customerid;
+    // var customerName = req.cookies.customername;
+    // var customerId = req.cookies.customerid;
 
-    db.Burger.findAll({
-        order: [
-            ['burger_counter', 'DESC']
-        ],
-    }).then(function (dbBurger) {
+    db.Media.findAll({
+        order: [['omdb_rating', 'DESC']],
+        limit: 10 
+    }).then(function (data) {
         var hbsObject = {
-            burgers: dbBurger
+            burgers: data
         };
+        res.render("index", hbsObject);
 
-        db.Customerburger.findAll({
-            include: [{ association: 'Burger' }
-            ],
-            where: {
-                CustomerId: customerId,
-            },
-            order: [
-                ['counter', 'DESC']
-            ],
-        }).then(function (dbBurgerCustomer) {
-            hbsObject.burgerscustomer = dbBurgerCustomer;
-            res.render("index", hbsObject);
-        });
+        // db.Customerburger.findAll({
+        //     include: [{ association: 'Burger' }
+        //     ],
+        //     where: {
+        //         CustomerId: customerId,
+        //     },
+        //     order: [
+        //         ['counter', 'DESC']
+        //     ],
+        // }).then(function (dbBurgerCustomer) {
+        //     hbsObject.burgerscustomer = dbBurgerCustomer;
+        //     res.render("index", hbsObject);
+        // });
 
     });
 });
