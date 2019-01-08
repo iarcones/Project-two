@@ -30,7 +30,7 @@ $(document).ready(function () {
 
 
     var provider = new firebase.auth.GoogleAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+    provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
 
 
     $('#googleLogin').on('click', function () {
