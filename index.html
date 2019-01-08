@@ -27,7 +27,17 @@
 </head>
 
 <body class="auth-false">
-
+  <!-- Header -->
+  <header id="masthead">
+    <div class="container">
+      <img src="assets/photos/logo.png" class="auth-image" alt="logo">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="profile.html">My Profile</a>
+      </nav>
+    </div>
+  </header>
   <!-- Empty field alert modal -->
   <div class="modal fade" id="emptyField" role="dialog">
     <div class="modal-dialog">
@@ -97,27 +107,6 @@
         </div>
         <div class="modal-body">
           <form method="POST" role="form" id="registerForm">
-            <div class="form-group">
-              <label for="recipient-name">First Name:</label>
-              <input type="text" class="form-control" id="registerFirstName">
-            </div>
-            <div class="form-group">
-              <label for="recipient-name">Last Name:</label>
-              <input type="text" class="form-control" id="registerLastName">
-            </div>
-            <div class="form-group">
-              <label for="recipient-name">Email:</label>
-              <input type="text" class="form-control" id="registerEmail">
-            </div>
-            <div class="form-group">
-              <label for="message-text">Password:</label>
-              <input type="password" class="form-control" id="registerPassword">
-            </div>
-            <div class="form-group">
-              <label for="message-text">Confirm Password:</label>
-              <input type="password" class="form-control" id="registerConfirmPassword">
-            </div>
-            <button type="submit" class="login-button" id="doRegister">Register</button>
             <button type="submit" class="login-button" id="googleLogin">Login with Google</button>
           </form>
         </div>
@@ -135,7 +124,7 @@
       </div>
       <h3>Welcome to Educated Guess! </h3><span id="user-info"></span>
       <div class="form-contain">
-        <h3>Search for attractions or restaurants you like in any city!</h3>
+        <h3>Search for movies / tv shows!</h3>
         <form class="yelp">
           <input placeholder="location" id="location" type="text">
           <input placeholder="category" type="text" id="category">
@@ -148,7 +137,6 @@
     </section>
 
   </div>
-
 
 
 
