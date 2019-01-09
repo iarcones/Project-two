@@ -24,29 +24,30 @@ axios
     // Then log the body from the site!
     //console.log(response.data);
 
-    console.log(response)
-    console.log(response.results)
-    var data = response.results;
+    // console.log(response)
+    
+    // console.log(response.data.results[0].title)
+    var movies = response.data.results;
     // console.log(data[0])
   
-    console.log("movies", response.results);
+    console.log("movies", movies);
     var obj = {};
-    // for (var i = 0; i < data.length; i++){
-    //     console.log(data[i].title)
-    //     obj.name = data[i].title
-    // }
+    for (var i = 0; i < movies.length; i++){
+        // console.log(data[i].title)
+        obj.name = movies[i].title
+    }
     console.log("hope: ", obj)
     var hbsObject = {
        movies: obj
     }
-    res.render("index", movies);
+    res.render("index", hbsObject);
     
-    var topTen = 0;
-    for (var i =0; i<10; i++){  ///WHERE TOP TEN GETS CREATED
-      console.log(response.data.results[i].title);
-      placeHolder[i]=[response.data.results[i].title,"https://image.tmdb.org/t/p/w600_and_h900_bestv2"+response.data.results[i].poster_path];
+    // var topTen = 0;
+    // for (var i =0; i<10; i++){  ///WHERE TOP TEN GETS CREATED
+    //   console.log(response.data.results[i].title);
+    //   placeHolder[i]=[response.data.results[i].title,"https://image.tmdb.org/t/p/w600_and_h900_bestv2"+response.data.results[i].poster_path];
       
-    };
+    // };
     // res.render
     // console.log(placeHolder);
     
