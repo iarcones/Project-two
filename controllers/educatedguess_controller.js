@@ -46,7 +46,7 @@ axios
   // console.log(response.data.results[0].title)
   var movies = response.data.results;
   // console.log(data[0])
-
+    console.log(movies);
   res.send(movies)
 
 })
@@ -168,6 +168,8 @@ router.post("/api/customers", function (req, res) {
         res.json(dbCustomer);
     });
 });
+
+
 
 
 module.exports = router;

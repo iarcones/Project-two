@@ -20,6 +20,15 @@ body {
     
 }
 
+
+
+#movie-display{
+
+    width: 75%;
+    width: 300px;
+    height: 500px;
+}
+
 .img-logo{
 display: block;
   margin-left: auto;
@@ -31,6 +40,15 @@ width:350px
 .welcome-page{
     background-color: black;
 }
+
+
+#googleLogin{
+    font-size: 26px;
+    font-family: 'Titillium Web', sans-serif; 
+    color: red;
+
+}
+
 
 img{
     width: 200px;
