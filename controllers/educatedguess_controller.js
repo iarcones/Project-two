@@ -37,7 +37,7 @@ axios
      console.log("hbsObject");
     console.log(hbsObject);
 
-    // var obj = {};
+    // var obj = []];
     // for (var i = 0; i < movies.length; i++){
     //     // console.log(data[i].title)
     //     obj.name = movies[i].title

@@ -22,9 +22,21 @@
         <div class="col-lg-12">
             <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
 
- {{#each movies}}
-            <div class="api-call-movies">
-      {{name}}
+
+      <ul class="pl-5">
+                {{#each movies}}
+                <li>
+                    <div class="row pb-2">
+                        <div class="col-4">
+                            {{title}}
+                        </div>
+            
+                    </div>
+                </li>
+
+                {{/each}}
+            </ul>
+        </div>
 
 
             </div>
