@@ -31,15 +31,21 @@ axios
     // console.log(data[0])
   
     console.log("movies", movies);
-    var obj = {};
-    for (var i = 0; i < movies.length; i++){
-        // console.log(data[i].title)
-        obj.name = movies[i].title
-    }
-    console.log("hope: ", obj)
     var hbsObject = {
-       movies: obj
-    }
+        movies: movies
+     }
+     console.log("hbsObject");
+    console.log(hbsObject);
+
+    // var obj = {};
+    // for (var i = 0; i < movies.length; i++){
+    //     // console.log(data[i].title)
+    //     obj.name = movies[i].title
+    // }
+    // console.log("hope: ", obj)
+    // var hbsObject = {
+    //    movies: obj
+    // }
     res.render("index", hbsObject);
     
     // var topTen = 0;
