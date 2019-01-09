@@ -9,50 +9,8 @@ var db = require("../models");
 router.get("/", function (req, res) {
 var placeHolder = {};
 
-
     res.render("index");
 });
-
-// Run the axios.get function...
-// The axios.get function takes in a URL and returns a promise (just like $.ajax)
-axios
-  .get("https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019")
-  
-  
-  //https://api.themoviedb.org/3/movie/now_playing?api_key=32a91bda53591f9bf3267b9088686a93&primary_release_year=2018&sort_by=vote_average.desc
-
-  //https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018
-
-  .then(function(response) {
-    // If the axios was successful...
-    // Then log the body from the site!
-    //console.log(response.data);
-
-    // console.log(response)
-    
-    // console.log(response.data.results[0].title)
-    var movies = response.data.results;
-    // console.log(data[0])
-  
-    console.log("movies", movies);
-    var hbsObject = {
-        movies: movies
-     }
-     console.log("hbsObject");
-    console.log(hbsObject);
-
-    // var obj = []];
-    // for (var i = 0; i < movies.length; i++){
-    //     // console.log(data[i].title)
-    //     obj.name = movies[i].title
-    // }
-    // console.log("hope: ", obj)
-    // var hbsObject = {
-    //    movies: obj
-    // }
-    res.render("index", hbsObject);
-    
-
     // var topTen = 0;
     // for (var i =0; i<10; i++){  ///WHERE TOP TEN GETS CREATED
     //   console.log(response.data.results[i].title);
