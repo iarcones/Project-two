@@ -4,39 +4,54 @@
 <div class="container welcome-page">
     <div class="row">
         <div class="col-lg-12">
-            <img src="assets/img/logomovie.png" class="text-center" alt="logo" height="150" width="400">
+            <img src="assets/img/logomovie.png" class="img-logo text-center" alt="logo" >
             <br>
             <br>
-
-            <h1 class="text-center">EducatedGuess</h1>
             <h2 class="text-center">The smart way to find movies.</h2>
         </div>
     </div>
 
-
+    
 
     {{!-- column 1 for the row of movies and shows --}}
     {{!-- this column shows tv shows --}}
 
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
+<div>
+       
+<h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
+        
+ {{!-- carousel to display movies in --}}
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner" id = "movie-display">
+    
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
- {{#each movies}}
-            <div class="api-call-movies">
-      {{name}}
+{{!-- <ul class="pl-5">
+        {{#each movies}}
+        <li>
+            <div class="row pb-2">
+                <div class="col-4">
+                    {{title}}
+    <img src = "https://image.tmdb.org/t/p/w200/8jDMUj5pRiSJCAsfoIczgiDkABG.jpg">
 
+                </div>
 
             </div>
+        </li>
 
-        </div>
+        {{/each}}
+    </ul> --}}
+
+           
 
     </div>
 </div>
-
-<script>
-    // Make sure we wait to attach our handlers until the DOM is fully loaded.
-
-
-
-</script>

@@ -20,18 +20,22 @@ body {
     
 }
 
-img{
+.img-logo{
 display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
-}
+  height:70px;
+width:350px
+} 
 
 .welcome-page{
-    line-height: 30px;
     background-color: black;
 }
 
+img{
+    width: 200px;
+    height: 300px;
+}
 
 * {
     box-sizing: border-box;
