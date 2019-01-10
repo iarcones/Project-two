@@ -17,14 +17,15 @@ router.get("/", function (req, res) {
     // ask if the cookie has a user logged in
     // if the user IS registered, the cookie has user
     // then we need to render index-registered
+    res.render("index-registered");
 
-    if (userName !== null) {
-        res.render("index-registered");
-    }
-    else{
-    // if not, we do everything in /movies and render 'index'
-    res.render("index");
-    }
+    // if (userName !== null) {
+    //     res.render("index-registered");
+    // }
+    // else{
+    // // if not, we do everything in /movies and render 'index'
+    // res.render("index");
+    // }
 });
   
     
