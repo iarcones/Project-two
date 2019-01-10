@@ -5,12 +5,12 @@ $(function () {
     var userName = readCookie("username");
     var userEmail = readCookie("useremail");
 
-    if (userEmail !== null) {
+    // if (userEmail !== null) {
 
-        $(".areauser").empty();
-        $(".areauser").append("<h3>Hi " + userName + ", how are you doing today?</h3>");
+    //     $(".areauser").empty();
+    //     $(".areauser").append("<h3>Hi " + userName + ", how are you doing today?</h3>");
 
-    }
+    // }
     // Initialize Firebase //// MOVE ALL OF THIS TO THE .env file
     var config = {
         apiKey: "AIzaSyAQdQKzg61WjdyOQ3fFTnu5lX5Z6YOsw78",
