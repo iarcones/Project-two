@@ -34,7 +34,7 @@ $(document).ready(function () {
         })
 })
 //currently this route handles the search for a single movie by logged in user
-var APIcallsMyMovieSearch = require("../../ZZZ - old file to delete/apiCalls.js/");
+var APIcallsMyMovieSearch = require("APIcallsMyMovieSearch");
 app.post("/", function(req, res) {
 
     var getMovieInfoURL="https://www.omdbapi.com/?t=" + req.body.movieTitle + "&y=&plot=short&apikey=trilogy";

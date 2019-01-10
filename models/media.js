@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER, 
       defaultValue: 0
     },
+    counter: { 
+      type: DataTypes.INTEGER, 
+      defaultValue: 0
+    },
     user_rating: { 
       type: DataTypes.INTEGER, 
       defaultValue: 0

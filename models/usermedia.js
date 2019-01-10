@@ -2,7 +2,11 @@
 console.log("usermedia model");
 module.exports = (sequelize, DataTypes) => {
   const usermedia = sequelize.define("usermedia", {
-    counter: { 
+    rating: { 
+      type: DataTypes.INTEGER, 
+      defaultValue: 1 
+    },
+    myreview: { 
       type: DataTypes.INTEGER, 
       defaultValue: 1 
     }
