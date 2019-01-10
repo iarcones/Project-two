@@ -11,17 +11,24 @@ var db = require("../models");
 // first need to check if user is registered
 
 router.get("/", function (req, res) {
+
     var userName = req.cookies.username;
     var userEmail = req.cookies.useremail;
-
     // ask if the cookie has a user logged in
-    // if not, we do everything in /movies and render 'index'
-    res.render("index");
-
     // if the user IS registered, the cookie has user
     // then we need to render index-registered
-    res.render("index-registered");
+
+    if (userName !== null) {
+        res.render("index-registered");
+    }
+    else{
+    // if not, we do everything in /movies and render 'index'
+    res.render("index");
+    }
 });
+  
+    
+
 
 // new route here for API call
 router.get("/movies", function (req, res) {
