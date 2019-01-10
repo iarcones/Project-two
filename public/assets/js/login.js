@@ -107,12 +107,6 @@ $(function () {
     // Sign out using built-in Firebase function on click of logout button
 
 
-    $(".register").on("submit", function (event) {
-
-
-
-    });
-
     $('#logout').on('click', function (e) {
         firebase.auth().signOut().then(function () {
             // Sign-out successful.

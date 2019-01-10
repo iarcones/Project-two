@@ -11,6 +11,8 @@ var db = require("../models");
 // first need to check if user is registered
 
 router.get("/", function (req, res) {
+    var userName = req.cookies.username;
+    var userEmail = req.cookies.useremail;
 
     // ask if the cookie has a user logged in
     // if not, we do everything in /movies and render 'index'
