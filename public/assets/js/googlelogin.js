@@ -60,17 +60,17 @@
         });
     
     
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                console.log("listener-user")
-                console.log(user)
-                // User is signed in.
-            } else {
+        // firebase.auth().onAuthStateChanged(function (user) {
+        //     if (user) {
+        //         console.log("listener-user")
+        //         console.log(user)
+        //         // User is signed in.
+        //     } else {
     
-                console.log("no logged")
-                // No user is signed in.
-            }
-        });
+        //         console.log("no logged")
+        //         // No user is signed in.
+        //     }
+        // });
     
         // firebase.auth().signInWithRedirect(provider);
     
