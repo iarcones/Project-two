@@ -1,7 +1,7 @@
 
 console.log("profile model");
 module.exports = (sequelize, DataTypes) => {
-  const Media = sequelize.define("Media", {
+  const Profile = sequelize.define("Profile", {
     media_name: {
       type: DataTypes.STRING,
       validate: {len: [1]}
@@ -18,20 +18,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER, 
       defaultValue: 0
     },
-    omdb_rating: { 
-      type: DataTypes.INTEGER, 
-      defaultValue: 0
-    },
-    counter: { 
+    user_rating: { 
       type: DataTypes.INTEGER, 
       defaultValue: 0
     },
     user_rating: { 
-      type: DataTypes.INTEGER, 
-      defaultValue: 0
-    }
+        type: DataTypes.INTEGER, 
+        defaultValue: 0
+      },
   });
-  Media.associate = function(models) {
+  Profile.associate = function(models) {
     
       console.log("inside media associate")
       Media.hasMany(models.usermedia);
@@ -40,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   // Syncs with DB
   // Burger.sync();
-  return Media;
+  return Profile;
 };
 
 
