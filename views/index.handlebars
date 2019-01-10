@@ -18,15 +18,31 @@
             </div>
         </div>
 
-{{!-- Please enter your review o --}}
+{{!-- Please enter your review of this movie  --}}
         <div>
-
             <form>
                 <div class="form-group">
-                    <label for="formGroupExampleInput2">Another label</label>
+                    <label for="formGroupExampleInput2">Movie or Show Rating</label>
                     <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
                 </div>
+{{!-- Please enter your review of this movie  --}}
+<div class="container">
+	<div class="row">
+		<h2>Working Star Ratings for Bootstrap 3 <small>Hover and click on a star</small></h2>
+	</div>
+    <div class="row lead">
+        <div id="stars" class="starrr"></div>
+        You gave a rating of <span id="count">0</span> star(s)
+	</div>
+    
+    <div class="row lead">
+        <p>Also you can give a default rating by adding attribute data-rating</p>
+        <div id="stars-existing" class="starrr" data-rating='4'></div>
+        You gave a rating of <span id="count-existing">4</span> star(s)
+    </div>
+</div>
             </form>
+
 
             <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
 
