@@ -11,9 +11,11 @@ var db = require("../models");
 // first need to check if user is registered
 
 router.get("/", function (req, res) {
+    console.log("here")
 
     var userName = req.cookies.username;
     var userEmail = req.cookies.useremail;
+    console.log("cookie in router.get: ", userName, userEmail)
     // ask if the cookie has a user logged in
     // if the user IS registered, the cookie has user
     // then we need to render index-registered
@@ -82,7 +84,10 @@ router.get("/movies", function (req, res) {
 router.post("/api/users", function (req, res) {
     db.User.create({
         user_name: req.body.name,
-        user_email: req.body.email
+        user_email: req.body.email,
+        first_name: req.body.firstname,
+        last_name: req.body.lastname
+
     })
         .then(function (dbUser) {
             res.json(dbUser);

@@ -7,6 +7,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {len: [1]}
     },
+    first_name: { 
+      type: DataTypes.STRING,
+      validate: {len: [1]}
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      validate: {len: [1]}
+    },
     user_email: {
       type: DataTypes.STRING,
       validate: {isEmail: true}

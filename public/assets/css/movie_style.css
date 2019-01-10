@@ -6,6 +6,20 @@
     
     */
 
+.rating-div{
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    line-height: 50px;
+    background-color: black;
+    color: orange;
+}
+.comment-div{
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    line-height: 50px;
+    background-color: black;
+    color: orange;
+}
     
 html {
     position: relative;

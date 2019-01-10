@@ -52,21 +52,29 @@ $(function () {
             var token = result.credential.accessToken;
             // The signed-in user info.
             var userName = result.user.displayName;
-            console.log(user, email)
-            var useremail = result.user.email;
-            console.log(user, email)
+            var temp = userName.split(" ");
+            var firstName = temp[0];
+            var lastName = temp[1];
+            var userEmail = result.user.email;
+            console.log(userName, userEmail, firstName, lastName)
 
             // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
-            document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "customerid=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            document.cookie = "useremail; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 
             // Store the username as a cookie using "document.cookie"
             document.cookie = "username=" + userName + ";";
-            document.cookie = "useremail=" + useremail + ";";
+            document.cookie = "useremail=" + userEmail + ";";
+            document.cookie = "firstname=" + firstName + ";";
+            document.cookie = "lastname=" + lastName + ";";
             // Send the POST request.
             var newUser = {
                 name: userName,
-                email: useremail
+                email: userEmail,
+                firstname: firstName,
+                lastname: lastName
             };
             $.ajax("/api/users", {
                 type: "POST",
