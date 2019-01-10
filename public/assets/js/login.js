@@ -5,7 +5,7 @@ $(function () {
     var userName = readCookie("username");
     var userEmail = readCookie("useremail");
 
-    if (useremail !== null) {
+    if (userEmail !== null) {
 
         $(".areauser").empty();
         $(".areauser").append("<h3>Hi " + userName + ", how are you doing today?</h3>");
