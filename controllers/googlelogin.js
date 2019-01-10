@@ -1,20 +1,4 @@
-var express = require("express");
 
-var router = express.Router();
-
-// Import the model (burger.js) to use its database functions.
-var db = require("../models");
-
-
-
-    var express = require("express");
-
-    var router = express.Router();
-
-    var db = require("../models");
-
-    // // // hide <div> with class of well on index.html when page loads
-    // $(".well").hide();
 
     // Initialize Firebase //// MOVE ALL OF THIS TO THE .env file
     var config = {
