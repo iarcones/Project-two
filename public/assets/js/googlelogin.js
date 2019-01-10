@@ -1,39 +1,5 @@
 
-    var firebase = require("firebase");
-    
-        // // // hide <div> with class of well on index.html when page loads
-        // $(".well").hide();
-    
-        // Initialize Firebase //// MOVE ALL OF THIS TO THE .env file
-        var config = {
-            apiKey: "AIzaSyAQdQKzg61WjdyOQ3fFTnu5lX5Z6YOsw78",
-            authDomain: "educated-guess.firebaseapp.com",
-            databaseURL: "https://educated-guess.firebaseio.com",
-            projectId: "educated-guess",
-            storageBucket: "educated-guess.appspot.com",
-            messagingSenderId: "950784072530",
-            // Google Oauth client ID and discovery docs
-            clientId:
-                "950784072530-kr070pd267ccc8lae9iqkb1jv7fpa3og.apps.googleusercontent.com"
-        };
-        firebase.initializeApp(config);
-    
-        // ====================== login start ======================//
-        var database = firebase.database();
-        // Assign a variable to equal the Firebase pathway to the Interests folder
-        var interestRef = database.ref('Interests')
-        // Assign a variable to equal the Firebase pathway to the Users folder
-        var usersRef = database.ref('Users')
-        // Assign a variable to hold the value of whether a user is logged in or not
-        var auth = null;
-        // Assign a variable to a blank string 'globally' so it can be reassigned when a user is authenticated (logged in)
-        var userID = "";
-    
-    
-        var provider = new firebase.auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
-    
-    
+    $(document).ready(function () {
         $('#googleLogin').on('click', function () {
             firebase.auth().signInWithPopup(provider).then(function (result) {
                 // This gives you a Google Access Token. You can use it to access the Google API.
@@ -141,7 +107,7 @@
             });
         });
     
-    
+    });
     
     
     
