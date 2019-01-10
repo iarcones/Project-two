@@ -33,11 +33,61 @@ $(document).ready(function () {
 
         })
 })
+//currently this route handles the search for a single movie by logged in user
+var APIcallsMyMovieSearch = require("./searchMyMovie.js");
+app.post("/", function(req, res) {
+
+    var getMovieInfoURL="https://www.omdbapi.com/?t=" + req.body.movieTitle + "&y=&plot=short&apikey=trilogy";
+  
+    APIcallsMyMovieSearch.myMovieResult(getMovieInfoURL).then(function (response) {
+  
+      //console.log(response.data);
+      var placeHolder = {};
+      placeHolder = response.data;
+      var topTen = 0;
+      console.log(placeHolder);
+      res.render("index",{placeHolder:placeHolder});
+      // return placeHolder;
+  
+  })
+      .catch(function (error) {
+          if (error.response) {
+              
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+          } else if (error.request) {
+           console.log(error.request);
+          } else {
+              console.log("Error", error.message);
+          }
+          console.log(error.config);
+      });
+    //connection.query("INSERT INTO tasks (task) VALUES (?)", [req.body.task], function(err, result) {
+      //if (err) throw err;
+      //res.redirect("/");
+      
+      console.log("after redirect");
+      console.log(res);
+      console.log(req.body.movieTitle);
+      // res.render("index",req.body.movieTitle);
+    //});
+  });
+
+
+
+
+
+
 {/* 
 // drop everythig into movie-display
 // <div class="carousel-item active">
 //       <img class="d-block w-100" src="..." alt="First slide">
 //     </div> */}
+
+
+
+
 
 
 {/* <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

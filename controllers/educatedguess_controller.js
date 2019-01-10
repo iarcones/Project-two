@@ -69,7 +69,7 @@ router.get("/movies", function (req, res) {
 });
 
 // users table here-post
-router.post("/api/Users", function (req, res) {
+router.post("/api/users", function (req, res) {
     db.User.create({
         user_name: req.body.name,
         user_email: req.body.email

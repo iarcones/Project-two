@@ -1,0 +1,81 @@
+{{!-- my code here --}}
+
+
+{{!-- this is the page the user sees when they ARE LOGGED IN --}}
+
+<body class="auth-true">
+    <div class="container ">
+        <p>"Welcome! Thanks for logging in!"</p>
+
+
+    </div>
+
+
+    <div class="welcome-page">
+        <div class="row">
+            <div class="col-lg-12">
+                <img src="assets/img/logomovie.png" class="img-logo text-center" alt="logo">
+                <br>
+                <br>
+                <h2 class="text-center">The smart way to find movies.</h2>
+
+                hey its working bc it prints the title: {{this.placeHolder.Title}}
+
+                <form action="/" method="POST">
+                    <textarea type="text" name="movieTitle" id="movie-name"></textarea>
+
+                    <button type="submit">Search for a movie or show here!</button>
+                </form>
+
+            </div>
+        </div>
+
+
+
+
+        {{!-- column 1 for the row of movies and shows --}}
+        {{!-- this column shows tv shows --}}
+
+
+
+        <div>
+
+            {{!-- SHOWS POPULAR MOVIES HERE TO THE LOGGED IN USER --}}
+            <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
+
+            {{!-- carousel to display movies in --}}
+            {{!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" id="movie-display">
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div> --}}
+            <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+                <div class="carousel-inner w-100" role="listbox" id="movie-display">
+                </div>
+
+                <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+
+
+        </div>
+    </div>
+    <script src="assets/js/app.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+    <script src="assets/js/googlelogin.js"></script>
+</body>

@@ -40,3 +40,26 @@ axios
   });
 
 return module.exports;
+
+
+// var movieName = "vice";
+// //$(this).attr("data-name");
+
+// var querySTR = function(movie){
+//     str="https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy"
+//     return str;
+// }
+// queryURL=querySTR(movieName);
+
+var axios = require("axios");
+var APIcallsMyMovieSearch = {
+    myMovieResult: function (queryURL) {
+        var placeHolder = {};
+        return axios
+            .get(queryURL)
+
+    }
+}
+//APIcallsMyMovieSearch.myMovieResult();
+
+module.exports = APIcallsMyMovieSearch;
