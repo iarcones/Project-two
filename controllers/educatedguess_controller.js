@@ -4,31 +4,22 @@ var router = express.Router();
 var axios = require("axios");
 // Import the model (burger.js) to use its database functions.
 var db = require("../models");
-var firebase = require("firebase");
-
-
-
-
 
 
 ////////////// ROUTES
 
+// first need to check if user is registered
+
 router.get("/", function (req, res) {
-    var placeHolder = {};
 
+    // ask if the cookie has a user logged in
+    // if not, we do everything in /movies and render 'index'
     res.render("index");
+
+    // if the user IS registered, the cookie has user
+    // then we need to render index-registered
+    res.render("index-registered");
 });
-// var topTen = 0;
-// for (var i =0; i<10; i++){  ///WHERE TOP TEN GETS CREATED
-//   console.log(response.data.results[i].title);
-//   placeHolder[i]=[response.data.results[i].title,"https://image.tmdb.org/t/p/w600_and_h900_bestv2"+response.data.results[i].poster_path];
-
-// };
-// res.render
-// console.log(placeHolder);
-
-// return placeHolder;
-
 
 // new route here for API call
 router.get("/movies", function (req, res) {
@@ -77,60 +68,128 @@ router.get("/movies", function (req, res) {
 
 });
 
-
-router.post("/api/burgers", function (req, res) {
-    db.Burger.create({
-        burger_name: req.body.name,
+// users table here-post
+router.post("/api/Users", function (req, res) {
+    db.User.create({
+        user_name: req.body.name,
+        user_email: req.body.email
     })
-        .then(function (dbBurger) {
-            res.json(dbBurger);
+        .then(function (dbUser) {
+            res.json(dbUser);
         });
 });
 
-router.put("/api/devoured/:id/:customerId", function (req, res) {
-    burger = req.params.id;
-    client = req.params.customerId;
+// route to friends SQL table here
+router.post("/api/friends", function (req, res) {
 
-    db.Burger.increment('burger_counter', { where: { id: req.params.id } }).then(function (data) {
-        console.log("client: ", client)
-        if (client !== 'null') {
-            console.log("client in the if: ", client)
-            db.Customerburger.increment('counter', { where: { BurgerId: burger, CustomerId: client } }).then(function (data) {
+    db.Media.create({
+        media_name: req.body.name,
+        media_type: req.body.type,
+        omdb_id: req.body.omdbid,
+        user_rating: req.body.rating
 
-                /// if rec doesn't exist create and counter = 1;
-                if (data[0][1] === (0)) {
-                    db.Customerburger.create(
-                        {
-                            BurgerId: burger,
-                            CustomerId: client
-                        })
-                        .then(function (dbcustomerburger) {
-                            res.json(dbcustomerburger);
-                        });
-                }
-                else {
-                    res.json(data);
-                }
+    }).then(function (dbMedia) {
+
+        res.json(dbMedia);
+    });
+});
+
+// Media table here with all our API call
+router.post("/api/media/:name/:type/:omdbid/:rating", function (req, res) {
+
+    db.Media.create({
+        media_name: req.body.name,
+        media_type: req.body.type,
+        omdb_id: req.body.omdbid,
+        user_rating: req.body.rating
+
+    }).then(function (dbMedia) {
+
+        res.json(dbMedia);
+    });
+});
+
+// Update media table here with all our API call when user inputs data
+// should this be POST or PUT
+router.post("/api/media/:id", function (req, res) {
+    /// find Media if exist update and go to see if mediauser exist or not and update or create
+    db.Media.update({
+        omdb_id: req.body.omdbid,
+        user_rating: req.body.rating
+
+    }),
+        { where: { id: id } }
+            .then(function (dbMedia) {
+
+                res.json(dbMedia);
             });
-        }
-        else {
-            res.json(data);
-        }
-    });
+
 
 });
 
-router.post("/api/customers", function (req, res) {
+// get request for FRIENDS table
+router.get("/api/friends/:id", function (req, res) {
 
-    db.Customer.create({
-        customer_name: req.body.name,
-    }).then(function (dbCustomer) {
+    db.Friends.findAll({
 
-        res.json(dbCustomer);
-    });
+    }),
+        { where: { id: id } }
+            .then(function (dbMedia) {
+                res.json(dbMedia);
+            });
+
+
 });
 
+// // find all search method
+// db.Customermedia.findAll({
+//     include: [{ association: 'Burger' }
+//     ],
+//     where: {
+//         CustomerId: customerId,
+//     },
+//     order: [
+//         ['counter', 'DESC']
+//     ],
+// }).then(function (dbMediaCustomer) {
+//     hbsObject.mediacustomer = dbMediaCustomer;
+//     res.render("index", hbsObject);
+// });
 
 
+
+
+// router.put("/api/devoured/:id/:customerId", function (req, res) {
+//     burger = req.params.id;
+//     client = req.params.customerId;
+
+//     db.Burger.increment('burger_counter', { where: { id: req.params.id } }).then(function (data) {
+//         console.log("client: ", client)
+//         if (client !== 'null') {
+//             console.log("client in the if: ", client)
+//             db.Customerburger.increment('counter', { where: { BurgerId: burger, CustomerId: client } }).then(function (data) {
+
+//                 /// if rec doesn't exist create and counter = 1;
+//                 if (data[0][1] === (0)) {
+//                     db.Customerburger.create(
+//                         {
+//                             BurgerId: burger,
+//                             CustomerId: client
+//                         })
+//                         .then(function (dbcustomerburger) {
+//                             res.json(dbcustomerburger);
+//                         });
+//                 }
+//                 else {
+//                     res.json(data);
+//                 }
+//             });
+//         }
+//         else {
+//             res.json(data);
+//         }
+//     });
+
+// });
 
 module.exports = router;
