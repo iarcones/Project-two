@@ -1,9 +1,4 @@
-    var express = require("express");
 
-    var router = express.Router();
-    
-    // Import the model (burger.js) to use its database functions.
-    var db = require("../models");
     var firebase = require("firebase");
     
         // // // hide <div> with class of well on index.html when page loads
