@@ -7,7 +7,12 @@ var db = require("../models");
 
 
 ////////////// ROUTES
+/////
 
+// router.post("/profile", function (req, res) {
+//     res.render("index-profile");
+// })
+/////
 // first need to check if user is registered
 
 router.get("/", function (req, res) {
@@ -173,9 +178,9 @@ router.get("/tv", function (req, res) {
 // users table here-post
 router.post("/api/user", function (req, res) {
     user_name = req.body.name,
-    user_email = req.body.email,
-    first_name = req.body.firstname,
-    last_name = req.body.lastname
+        user_email = req.body.email,
+        first_name = req.body.firstname,
+        last_name = req.body.lastname
 
     db.User.findOne({
         where: {
@@ -195,7 +200,7 @@ router.post("/api/user", function (req, res) {
                     res.json(data);
                 });
         }
-        res.json(data); 
+        res.json(data);
     });
 });
 
@@ -231,7 +236,7 @@ router.post("/api/media", function (req, res) {
 
 // Update media table here with all our API call when user inputs data
 // should this be POST or PUT
-router.post("/api/media/:id", function (req, res) {
+router.post("/api/media/", function (req, res) {
     /// find Media if exist update and go to see if mediauser exist or not and update or create
     db.Media.update({
         omdb_id: req.body.omdbid,
@@ -246,6 +251,73 @@ router.post("/api/media/:id", function (req, res) {
 
 
 });
+
+// Update media table here with all our API call when user inputs data
+// should this be POST or PUT
+
+router.post("/api/usermedia/:imdbid/:title", function (req, res) {
+    /// find Media if exist update and go to see if mediauser exist or not and update or create
+    var imdbid = req.params.imdbid;
+    var title = req.params.title;
+    db.Media.findOne({
+        where: {
+            omdb_id: imdbid
+        }
+    }).then(function (data) {
+        console.log("data media ", data)
+        if (data === null) {
+            db.Media.create({
+                omdb_id: imdbid,
+                media_name: title
+
+            }).then(function (data) {
+                console.log("id: ", data.id)
+                db.usermedia.create({
+                    MediumId: data.id,
+                    UserId: req.cookies.userid
+
+                })
+                    .then(function (data) {
+                        res.json(data);
+                    });
+            })
+        }
+    })
+})
+
+router.get("/profile", function (req, res) {
+
+    var userid = req.cookies.userid;
+
+    db.usermedia.findAll({
+        where: {
+            UserId: userid,
+        },
+    }).then(function (usermedia) {
+        console.log("usermedia", usermedia)
+
+        var hbsObject = {
+            usermedia: usermedia
+        };
+        res.render("index-profile", hbsObject);
+    });
+
+});
+
+
+// db.Media.update({
+//     omdb_id: req.body.omdbid,
+//     user_rating: req.body.rating
+
+// }),
+//     { where: { id: id } }
+//         .then(function (dbMedia) {
+
+//             res.json(dbMedia);
+//         });
+
+
+
 
 // get request for FRIENDS table
 router.get("/api/friends/:id", function (req, res) {
@@ -275,43 +347,54 @@ var APIcallsMyMovieSearch = {
 // }) +++
 //currently this route handles the search for a single movie by logged in user
 // var APIcallsMyMovieSearch = require("APIcallsMyMovieSearch");
-router.post("/", function(req, res) {
+router.post("/", function (req, res) {
 
     // var getMovieInfoURL="https://www.omdbapi.com/?t=" + req.body.movieTitle + "&y=&plot=short&apikey=trilogy";
-  
-    var getMovieInfoURL="http://www.omdbapi.com/?s=" + req.body.movieTitle + "&page=all&apikey=trilogy";
-    
-    APIcallsMyMovieSearch.myMovieResult(getMovieInfoURL).then(function (response) {
-  
-      //console.log(response.data);
-      var placeHolder = {};
-      var namesAndYears ={};
-      placeHolder = response.data;
-      var topTen = 0;
-      console.log(placeHolder);
-  
-      console.log("this Many "+response.data.Search.length);
-      
-      for (var i=0; i<response.data.Search.length;i++){
-        namesAndYears[response.data.Search[i].Title]=response.data.Search[i].Year;
-      }
-  console.log(namesAndYears);
-      res.render("index-registered",{namesAndYears:namesAndYears});
-      // return placeHolder;
-  
-  }).catch(function (error) {
-            if (error.response) {
 
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                console.log(error.request);
-            } else {
-                console.log("Error", error.message);
-            }
-            console.log(error.config);
-        });
+    var getMovieInfoURL = "http://www.omdbapi.com/?s=" + req.body.movieTitle + "&page=all&apikey=trilogy";
+
+    APIcallsMyMovieSearch.myMovieResult(getMovieInfoURL).then(function (response) {
+
+        //console.log(response.data);
+        var placeHolder = {};
+        var namesAndYears = {};
+        placeHolder = response.data;
+        var topTen = 0;
+        console.log(placeHolder);
+
+        console.log("this Many " + response.data.Search.length);
+
+        var movies = [];
+
+        for (var i = 0; i < response.data.Search.length; i++) {
+            var movie = {};
+            movie.title = response.data.Search[i].Title;
+            movie.year = response.data.Search[i].Year;
+            movie.imdbid = response.data.Search[i].imdbID;
+            movies.push(movie);
+            // namesAndYears[response.data.Search[i].Title]=response.data.Search[i].Year;
+        }
+        var hbsObj = { movies };
+
+
+        console.log(hbsObj);
+
+        console.log(namesAndYears);
+        res.render("index-registered", hbsObj);
+
+    }).catch(function (error) {
+        if (error.response) {
+
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            console.log(error.request);
+        } else {
+            console.log("Error", error.message);
+        }
+        console.log(error.config);
+    });
     //connection.query("INSERT INTO tasks (task) VALUES (?)", [req.body.task], function(err, result) {
     //if (err) throw err;
     //res.redirect("/");

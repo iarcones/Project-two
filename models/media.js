@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       validate: {len: [1]}
     },
     media_plot: { 
-      type: DataTypes.INTEGER, 
+      type: DataTypes.STRING, 
       defaultValue: 0
     },
     omdb_id: { 
-      type: DataTypes.INTEGER, 
+      type: DataTypes.STRING, 
       defaultValue: 0
     },
     omdb_rating: { 

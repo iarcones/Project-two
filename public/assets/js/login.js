@@ -1,9 +1,10 @@
 
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
-$(function () {
+$(document).ready(function () {
 
     var userName = readCookie("username");
     var userEmail = readCookie("useremail");
+    var userID = readCookie("userid");
 
     // if (userEmail !== null) {
 
@@ -47,18 +48,6 @@ $(function () {
             var lastName = temp[1];
             var userEmail = result.user.email;
             console.log(userName, userEmail, firstName, lastName)
-
-            // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
-            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "useremail; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-
-            // Store the username as a cookie using "document.cookie"
-            document.cookie = "username=" + userName + ";";
-            document.cookie = "useremail=" + userEmail + ";";
-            document.cookie = "firstname=" + firstName + ";";
-            document.cookie = "lastname=" + lastName + ";";
             // Send the POST request.
             var newUser = {
                 name: userName,
@@ -71,9 +60,22 @@ $(function () {
                 data: newUser
             }).then(
                 function (data) {
+                    console.log("login creating cookies: ", data.id)
+                    // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
+                    document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                    document.cookie = "useremail; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                    document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                    document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                    document.cookie = "userid; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+                    // Store the username as a cookie using "document.cookie"
+                    document.cookie = "userid=" + data.id + ";";
+                    document.cookie = "username=" + userName + ";";
+                    document.cookie = "useremail=" + userEmail + ";";
+                    document.cookie = "firstname=" + firstName + ";";
+                    document.cookie = "lastname=" + lastName + ";";
                     location.reload();
                 });
-           
 
         }).catch(function (error) {
             console.log("error");
@@ -85,22 +87,23 @@ $(function () {
     });
 
 
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            console.log("listener-user")
-            console.log(user)
-            // User is signed in.
-        } else {
-            
-            // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
-            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "useremail; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            console.log("no logged")
-            // No user is signed in.
-        }
-    });
+    // firebase.auth().onAuthStateChanged(function (user) {
+    //     if (user) {
+    //         console.log("listener-user")
+    //         console.log(user)
+    //         // User is signed in.
+    //     } else {
+
+    //         // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
+    //         document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //         document.cookie = "useremail; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //         document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //         document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //         console.log("no logged")
+    //         location.reload();
+    //         // No user is signed in.
+    //     }
+    // });
 
 
     // Sign out using built-in Firebase function on click of logout button

@@ -5,10 +5,17 @@
 
 <body class="auth-true welcome-page">
     <div class="container ">
-        <p>"Welcome! Thanks for logging in!"</p>
+        <h1>"Welcome! Thanks for logging in!"</h1>
     </div>
     {{!-- <p>"LOGIN HERE JUST FOR TESTING"</p>
     <button type="submit" class="google-login-button" id="googleLogin">Login with Google</button> --}}
+
+
+                    <form action="/profile" method="GET">
+                        {{!-- <form action="/:movie" method="GET"> --}}
+                            <button  class="profile-page" type="submit">Click to go to your profile</button>
+                        </form>
+
 
     <div>
         <div class="row">
@@ -17,17 +24,18 @@
                 <br>
                 <br>
                 <h2 class="text-center">The smart way to find movies.</h2>
-                
-        
+
+
                 <div class="row pt-2 pb-5">
-                    <h2 class="text-center">here the movies</h2>
-                    titles and yrs
-                    {{this.namesAndYears}}
+                    <h2 class="text-center">Movie and show results here</h2>
+            
                     <ul>
-                        {{#each namesAndYears}}
+                        {{#each movies}}
                         <li>
-                            <p>title: {{@key}}</p>
-                            <p>yr: {{this}}</p>
+                            <p>title: {{title}}</p>
+                            <p>yr: {{year}}</p>
+                            <p>imdbid: {{imdbid}}</p>
+                            <button class="save-button" data-id="{{this.imdbid}}" data-title="{{this.title}}">Add to Saved!</button>
                         </li>
                         {{/each}}
                     </ul>
@@ -41,29 +49,6 @@
                 </div>
             </div>
         </div>
-
-
-        {{!-- add rating here --}}
-        {{!-- data rating give a default rating of 4 --}}
-        <div class="rating-div">
-            <div class="row">
-                <h4>Give your movie/show rating here <small>Hover and click on a star</small></h2>
-            </div>
-            <div class="row lead">
-                <div id="stars-existing" class="starrr" data-rating='4'></div>
-                You gave a rating of <span id="count-existing">4</span> star(s)
-            </div>
-        </div>
-
-        {{!-- add your comment here --}}
-
-        <form>
-            <div class="form-group comment-div">
-                <label for="formGroupExampleInput2">Movie or Show Review</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-            </div>
-
-        </form>
 
         <div>
 
@@ -114,4 +99,6 @@
     <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
     <script src="assets/js/login.js"></script>
     <script src="assets/js/rating.js"></script>
+
+
 </body>
