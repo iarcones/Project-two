@@ -19,18 +19,19 @@ router.get("/", function (req, res) {
     // ask if the cookie has a user logged in
     // if the user IS registered, the cookie has user
     // then we need to render index-registered
-    res.render("index-registered");
+    // res.render("index-registered");
 
-    // if (userName !== null) {
-    //     res.render("index-registered");
-    // }
-    // else{
-    // // if not, we do everything in /movies and render 'index'
-    // res.render("index");
-    // }
+    if (typeof userName !== 'undefined') {
+        console.log("not null")
+        res.render("index-registered");
+    }
+    else {
+        // if not, we do everything in /movies and render 'index'
+        res.render("index");
+    }
 });
-  
-    
+
+
 
 
 // new route here for API call
@@ -55,9 +56,49 @@ router.get("/movies", function (req, res) {
 
             // console.log(response.data.results[0].title)
             var movies = response.data.results;
-            // console.log(data[0])
-            console.log(movies);
             res.send(movies)
+
+        })
+        .catch(function (error) {
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                // console.log(error.response.data);
+                // console.log(error.response.status);
+                // console.log(error.response.headers);
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        });
+
+});
+
+router.get("/tv", function (req, res) {
+
+    // Run the axios.get function...
+    // The axios.get function takes in a URL and returns a promise (just like $.ajax)
+    axios
+        .get("https://api.themoviedb.org/3/discover/tv?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019")
+
+
+        .then(function (response) {
+            // If the axios was successful...
+            // Then log the body from the site!
+            //console.log(response.data);
+
+            // console.log(response)
+
+            // console.log(response.data.results[0].title)
+            var tv = response.data.results;
+            // // console.log(data[0])
+            // console.log("TV", tv);
+            res.send(tv)
 
         })
         .catch(function (error) {
@@ -80,66 +121,82 @@ router.get("/movies", function (req, res) {
 
 });
 // new route here for API call
-router.get("/omdbmovies/:title", function (req, res) {
-    
-    var title = req.body.title
-    var getMovieInfoURL="https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
-    // Run the axios.get function...
-    // The axios.get function takes in a URL and returns a promise (just like $.ajax)
-    axios
-        .get(getMovieInfoURL)
+// router.get("/omdbmovies/:title", function (req, res) {
+
+//     var title = req.body.title
+//     var getMovieInfoURL="https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
+//     // Run the axios.get function...
+//     // The axios.get function takes in a URL and returns a promise (just like $.ajax)
+//     axios
+//         .get(getMovieInfoURL)
 
 
-        //https://api.themoviedb.org/3/movie/now_playing?api_key=32a91bda53591f9bf3267b9088686a93&primary_release_year=2018&sort_by=vote_average.desc
+//         //https://api.themoviedb.org/3/movie/now_playing?api_key=32a91bda53591f9bf3267b9088686a93&primary_release_year=2018&sort_by=vote_average.desc
 
-        //https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018
+//         //https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018
 
-        .then(function (response) {
-            // If the axios was successful...
-            // Then log the body from the site!
-            //console.log(response.data);
+//         .then(function (response) {
+//             // If the axios was successful...
+//             // Then log the body from the site!
+//             //console.log(response.data);
 
-            // console.log(response)
+//             // console.log(response)
 
-            // console.log(response.data.results[0].title)
-            var movies = response.data.results;
-            // console.log(data[0])
-            console.log(movies);
-            res.send(movies)
+//             // console.log(response.data.results[0].title)
+//             var movies = response.data.results;
+//             // console.log(data[0])
+//             console.log(movies);
+//             res.send(movies)
 
-        })
-        .catch(function (error) {
-            if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log("Error", error.message);
-            }
-            console.log(error.config);
-        });
+//         })
+//         .catch(function (error) {
+//             if (error.response) {
+//                 // The request was made and the server responded with a status code
+//                 // that falls out of the range of 2xx
+//                 console.log(error.response.data);
+//                 console.log(error.response.status);
+//                 console.log(error.response.headers);
+//             } else if (error.request) {
+//                 // The request was made but no response was received
+//                 // `error.request` is an object that comes back with details pertaining to the error that occurred.
+//                 console.log(error.request);
+//             } else {
+//                 // Something happened in setting up the request that triggered an Error
+//                 console.log("Error", error.message);
+//             }
+//             console.log(error.config);
+//         });
 
-});
+// });
+
 
 // users table here-post
-router.post("/api/users", function (req, res) {
-    db.User.create({
-        user_name: req.body.name,
-        user_email: req.body.email,
-        first_name: req.body.firstname,
-        last_name: req.body.lastname
+router.post("/api/user", function (req, res) {
+    user_name = req.body.name,
+    user_email = req.body.email,
+    first_name = req.body.firstname,
+    last_name = req.body.lastname
 
-    })
-        .then(function (dbUser) {
-            res.json(dbUser);
-        });
+    db.User.findOne({
+        where: {
+            user_email: user_email,
+        }
+    }).then(function (data) {
+        console.log("data user ", data)
+        if (data === null) {
+            db.User.create({
+                user_name: user_name,
+                user_email: user_email,
+                first_name: first_name,
+                last_name: last_name
+
+            })
+                .then(function (data) {
+                    res.json(data);
+                });
+        }
+        res.json(data); 
+    });
 });
 
 // route to friends SQL table here
@@ -158,7 +215,7 @@ router.post("/api/friends", function (req, res) {
 });
 
 // Media table here with all our API call
-router.post("/api/media/:name/:type/:omdbid/:rating", function (req, res) {
+router.post("/api/media", function (req, res) {
 
     db.Media.create({
         media_name: req.body.name,
@@ -222,45 +279,46 @@ var APIcallsMyMovieSearch = {
 // var APIcallsMyMovieSearch = require("APIcallsMyMovieSearch");
 
 
-router.post("/", function(req, res) {
-//$.post("/usersMovie")
-   // .then(function (req, res) {
-        var getMovieInfoURL = "https://www.omdbapi.com/?t=" + req.body.movieTitle + "&y=&plot=short&apikey=trilogy";
+router.post("/", function (req, res) {
+    console.log("I am in the router.post - root")
+    var getMovieInfoURL = "https://www.omdbapi.com/?s=" + req.body.movieTitle + "&y=&plot=short&apikey=trilogy";
 
-        APIcallsMyMovieSearch.myMovieResult(getMovieInfoURL).then(function (response) {
+    APIcallsMyMovieSearch.myMovieResult(getMovieInfoURL).then(function (response) {
+        console.log("response: ", response)
+    
+        var placeHolder = {};
+        placeHolder = response.data;
+        
+        //   var topTen = 0;
+        console.log(placeHolder);
+        res.render("index-registered", { placeHolder: placeHolder });
+        // res.render("index-registered", { movies: placeHolder });
+        // return placeHolder;
 
-            //console.log(response.data);
-            var placeHolder = {};
-            placeHolder = response.data;
-            //   var topTen = 0;
-            console.log(placeHolder);
-            res.render("index-registered", { placeHolder: placeHolder });
-            // return placeHolder;
+    })
+        .catch(function (error) {
+            if (error.response) {
 
-        })
-            .catch(function (error) {
-                if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            } else if (error.request) {
+                console.log(error.request);
+            } else {
+                console.log("Error", error.message);
+            }
+            console.log(error.config);
+        });
+    //connection.query("INSERT INTO tasks (task) VALUES (?)", [req.body.task], function(err, result) {
+    //if (err) throw err;
+    //res.redirect("/");
 
-                    console.log(error.response.data);
-                    console.log(error.response.status);
-                    console.log(error.response.headers);
-                } else if (error.request) {
-                    console.log(error.request);
-                } else {
-                    console.log("Error", error.message);
-                }
-                console.log(error.config);
-            });
-        //connection.query("INSERT INTO tasks (task) VALUES (?)", [req.body.task], function(err, result) {
-        //if (err) throw err;
-        //res.redirect("/");
-
-        console.log("after redirect");
-        console.log(res);
-        console.log(req.body.movieTitle);
-        // res.render("index",req.body.movieTitle);
-        //});
-    });
+    console.log("after redirect");
+    console.log(res);
+    console.log(req.body.movieTitle);
+    // res.render("index",req.body.movieTitle);
+    //});
+});
 
 module.exports = router;
 
