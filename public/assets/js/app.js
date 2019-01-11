@@ -1,6 +1,8 @@
 $(document).ready(function () {
     // should this be above or outside of document.ready
-    $('.carousel').carousel()
+    $('.carousel').carousel({
+        interval: 0
+    })
 
     $.get("/movies")
 
@@ -34,7 +36,7 @@ $(document).ready(function () {
     $.get("/tv")
 
         .then(function (data) {
-
+            
             var active = (`<div class="carousel-item row no-gutters active">`);
             var noactive = (`<div class="carousel-item row no-gutters">`);
 

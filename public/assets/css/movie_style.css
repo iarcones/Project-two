@@ -13,17 +13,17 @@ body{
     line-height: 50px;
     background-color: black;
     color: white;
-    font-family: 'Titillium Web', sans-serif; 
+    font-family: 'Nunito', sans-serif;
     padding: 30px;
     margin: 60px;
     
 }
 
-/* registered page
+.registered-page{
+    background-color: black;
+    color: white;
+}
 
-#search-movie {
-    
-    */
 
     .rating-div{
         font-family: 'Nunito', sans-serif;
@@ -55,16 +55,12 @@ body{
 
 .img-logo{
 display: block;
+float: left;
   margin-left: auto;
   margin-right: auto;
   height:70px;
 width:350px
 } 
-
-.welcome-page{
-    background-color: black;
-    color: white;
-}
 
 
 #googleLogin{
@@ -90,6 +86,7 @@ h1 {
     font-family: 'Titillium Web', sans-serif; 
     color: white;
     text-align: center;
+    margin: 40px;
 
 }
 
