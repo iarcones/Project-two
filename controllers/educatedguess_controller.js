@@ -299,8 +299,20 @@ router.get("/profile", function (req, res) {
         var hbsObject = {
             usermedia: usermedia
         };
-        res.render("index-profile", hbsObject);
+
+        db.Media.findAll({
+            include: [{ association: 'usermedia' }
+            ]
+        }).then(function (media) {
+            hbsObject.media = media;
+            console.log(hbsObject);
+            res.render("index-profile", hbsObject);
+        });
+        // res.render("index-profile", hbsObject);
     });
+    ////
+
+    ////
 
 });
 

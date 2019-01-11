@@ -6,169 +6,158 @@
 <body class="auth-true registered-page">
 
     <div class="container">
-<div class= "row">
-    <div class= "col-3">
-        <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
+        <div class="row">
+            <div class="col-9">
+                <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <form action="/profile" method="GET">
+                        {{!-- <form action="/:movie" method="GET"> --}}
+                            <br>
+                            <br>
+                            <button class="profile-page" type="submit">Click to go to your profile</button>
+                        </form>
+
+
+                </div>
+            </div>
         </div>
-        <div class= "col-9">
-    
-        </div>
-    </div>
         {{!-- <p>"LOGIN HERE JUST FOR TESTING"</p>
         <button type="submit" class="google-login-button" id="googleLogin">Login with Google</button> --}}
 
-<div class="row">
-        <form action="/profile" method="GET">
-            {{!-- <form action="/:movie" method="GET"> --}}
-                <button class="profile-page" type="submit">Click to go to your profile</button>
-            </form>
 
+        <div class="row">
+            <div class="col-lg-12">
 
-</div>
-            <div class="row">
-                <div class="col-lg-12">
-
-        <h1>Welcome to your page! You're now logged in!</h1>
-                   <br>
-                    <h3 class="text-center">Search for a movie or show here to add to your profile.</h3>
-                </div>
+                <h1>Welcome to your page! You're now logged in!</h1>
+                <br>
+                <h3 class="text-center">Search for a movie or show here to add to your profile.</h3>
             </div>
-            <form action="/" method="POST">
-                {{!-- <form action="/:movie" method="GET"> --}}
-
-
-
-
-
-
-                    {{!--
-                    <textarea type="text" name="movieTitle"></textarea>
-
-                    <button type="submit">Search Movie</button> --}}
-
-
-                    <div class="container">
-                        <br />
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-md-10 col-lg-8">
-                                <form class="card card-sm">
-                                    <div class="card-body row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <i class="fas fa-search h4 text-body"></i>
-                                        </div>
-                                        <!--end of col-->
-                                        <div class="col">
-                                            <input class="form-control form-control-lg form-control-borderless" type="search"
-                                                placeholder="Search topics or keywords" name="movieTitle">
-                                        </div>
-                                        <!--end of col-->
-                                        <div class="col-auto">
-                                            <button class="btn btn-lg btn-success" type="submit">Search
-                                                movie</button>
-                                        </div>
-                                        <!--end of col-->
-                                    </div>
-                                </form>
+        </div>
+        <form action="/" method="POST">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <form class="card card-sm">
+                        <div class="card-body row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <i class="fas fa-search h4 text-body"></i>
+                            </div>
+                            <!--end of col-->
+                            <div class="col">
+                                <input class="form-control form-control-lg form-control-borderless" type="search"
+                                    placeholder="Search topics or keywords" name="movieTitle">
+                            </div>
+                            <!--end of col-->
+                            <div class="col-auto">
+                                <button class="btn btn-lg btn-success" type="submit">Search
+                                    movie</button>
                             </div>
                             <!--end of col-->
                         </div>
-                    </div>
-                </form>
-            </form>
+                    </form>
+                </div>
+                <!--end of col-->
+            </div>
 
-            {{!-- <div class="row pt-2 pb-5 saved-user-movies">
-                <div class="col">
-                    <h2 class="text-center pt-3 pb-3 mb-4 backcol">Usermedia!</h2>
-                    <ul class="pl-5">
-                        {{#each usermedia}}
-                        <li>
-                            <div class="row pb-2">
-                                <div class="col-2">
-                                    {{MediumId}}
-                                </div>
-                                <div class="col-6">
-                                    {{media_name}}
-                                </div>
-                                <div class="col-2">
-                                    <button class="devour btn btn-warning btn-sm" data-id="{{this.id}}">Delete!</button>
-                                </div>
+        </form>
+
+
+        {{!-- <div class="row pt-2 pb-5 saved-user-movies">
+            <div class="col">
+                <h2 class="text-center pt-3 pb-3 mb-4 backcol">Usermedia!</h2>
+                <ul class="pl-5">
+                    {{#each usermedia}}
+                    <li>
+                        <div class="row pb-2">
+                            <div class="col-2">
+                                {{MediumId}}
                             </div>
-                        </li>
-
-                        {{/each}}
-                    </ul>
-                </div> --}}
-
-                <div class="row">
-
-                    <div class="row pb-2">
-                        {{#each movies}}
-
-                        {{!-- this will be for the photo --}}
-                        <div class="col-3">
-                            <p>Photo {{title}}</p>
+                            <div class="col-6">
+                                {{media_name}}
+                            </div>
+                            <div class="col-2">
+                                <button class="devour btn btn-warning btn-sm" data-id="{{this.id}}">Delete!</button>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <p>Title: {{title}}</p>
-                        </div>
-                        <div class="col-2">
-                            <p>Year: {{year}}</p>
-                        </div>
-                        <div class="col-1">
-                            <p>IMBD ID: {{imdbid}}</p>
-                        </div>
-                        <div class="col-4">
-                            <button class="save-button" data-id="{{this.imdbid}}" data-title="{{this.title}}">Add
-                                to Saved!</button>
-                        </div>
+                    </li>
 
-                        {{/each}}
+                    {{/each}}
+                </ul>
+            </div> --}}
+            <div class="row">
+
+
+                {{#each movies}}
+
+                {{!-- this will be for the photo --}}
+                
+                    <div class="col-3">
+                        <p>Photo {{title}}</p>
                     </div>
-                </div>
+                    <div class="col-2">
+                        <p>Title: {{title}}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>Year: {{year}}</p>
+                    </div>
+                    <div class="col-1">
+                        <p>IMBD ID: {{imdbid}}</p>
+                    </div>
+                    <div class="col-2">
+                        <button class="save-button" data-id="{{this.imdbid}}" data-title="{{this.title}}">Add
+                            to Saved!</button>
+                    </div>
+                
+                {{/each}}
+                </row>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div>
+
+        <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
+        <br>
+        <div id="movieCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox" id="movie-display">
+
 
             </div>
 
-            <div>
+            <a class="carousel-control-prev" href="#movieCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#movieCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <br><br>
+    <div>
 
-                <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
-                <br>
-                <div id="movieCarousel" class="carousel slide w-100" data-ride="carousel">
-                    <div class="carousel-inner w-100" role="listbox" id="movie-display">
+        <h2 class="text-center">Scroll to find the top TV-Shows in 2018:</h2>
+        <br>
+        <div id="tvCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox" id="tv-display">
 
 
-                    </div>
-
-                    <a class="carousel-control-prev" href="#movieCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#movieCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
             </div>
-            <br><br>
-            <div>
 
-                <h2 class="text-center">Scroll to find the top TV-Shows in 2018:</h2>
-                <br>
-                <div id="tvCarousel" class="carousel slide w-100" data-ride="carousel">
-                    <div class="carousel-inner w-100" role="listbox" id="tv-display">
-
-
-                    </div>
-
-                    <a class="carousel-control-prev" href="#tvCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#tvCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
+            <a class="carousel-control-prev" href="#tvCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#tvCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
     </div>
     </div>
     </div>
