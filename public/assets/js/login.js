@@ -26,15 +26,15 @@ $(function () {
     firebase.initializeApp(config);
 
     // ====================== login start ======================//
-    var database = firebase.database();
-    // Assign a variable to equal the Firebase pathway to the Interests folder
-    var interestRef = database.ref('Interests')
-    // Assign a variable to equal the Firebase pathway to the Users folder
-    var usersRef = database.ref('Users')
-    // Assign a variable to hold the value of whether a user is logged in or not
-    var auth = null;
-    // Assign a variable to a blank string 'globally' so it can be reassigned when a user is authenticated (logged in)
-    var userID = "";
+    // var database = firebase.database();
+    // // Assign a variable to equal the Firebase pathway to the Interests folder
+    // var interestRef = database.ref('Interests')
+    // // Assign a variable to equal the Firebase pathway to the Users folder
+    // var usersRef = database.ref('Users')
+    // // Assign a variable to hold the value of whether a user is logged in or not
+    // var auth = null;
+    // // Assign a variable to a blank string 'globally' so it can be reassigned when a user is authenticated (logged in)
+    // var userID = "";
 
 
     var provider = new firebase.auth.GoogleAuthProvider();

@@ -11,11 +11,9 @@ var db = require("../models");
 // first need to check if user is registered
 
 router.get("/", function (req, res) {
-    console.log("here")
 
     var userName = req.cookies.username;
     var userEmail = req.cookies.useremail;
-    console.log("cookie in router.get: ", userName, userEmail)
     // ask if the cookie has a user logged in
     // if the user IS registered, the cookie has user
     // then we need to render index-registered
@@ -79,63 +77,12 @@ router.get("/movies", function (req, res) {
         });
 
 });
-// new route here for API call
-router.get("/omdbmovies/:title", function (req, res) {
-    
-    var title = req.body.title
-    var getMovieInfoURL="https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
-    // Run the axios.get function...
-    // The axios.get function takes in a URL and returns a promise (just like $.ajax)
-    axios
-        .get(getMovieInfoURL)
-
-
-        //https://api.themoviedb.org/3/movie/now_playing?api_key=32a91bda53591f9bf3267b9088686a93&primary_release_year=2018&sort_by=vote_average.desc
-
-        //https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018
-
-        .then(function (response) {
-            // If the axios was successful...
-            // Then log the body from the site!
-            //console.log(response.data);
-
-            // console.log(response)
-
-            // console.log(response.data.results[0].title)
-            var movies = response.data.results;
-            // console.log(data[0])
-            console.log(movies);
-            res.send(movies)
-
-        })
-        .catch(function (error) {
-            if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log("Error", error.message);
-            }
-            console.log(error.config);
-        });
-
-});
 
 // users table here-post
 router.post("/api/users", function (req, res) {
     db.User.create({
         user_name: req.body.name,
-        user_email: req.body.email,
-        first_name: req.body.firstname,
-        last_name: req.body.lastname
-
+        user_email: req.body.email
     })
         .then(function (dbUser) {
             res.json(dbUser);
@@ -204,7 +151,7 @@ router.get("/api/friends/:id", function (req, res) {
 
 });
 
-////// OLEG
+
 
 var APIcallsMyMovieSearch = {
     myMovieResult: function (queryURL) {
@@ -261,9 +208,6 @@ router.post("/", function(req, res) {
         // res.render("index",req.body.movieTitle);
         //});
     });
-
-module.exports = router;
-
 // // find all search method
 // db.Customermedia.findAll({
 //     include: [{ association: 'Burger' }
@@ -315,3 +259,4 @@ module.exports = router;
 
 // });
 
+module.exports = router;
