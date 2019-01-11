@@ -272,31 +272,34 @@ var APIcallsMyMovieSearch = {
     }
 }
 
-
-
 // }) +++
 //currently this route handles the search for a single movie by logged in user
 // var APIcallsMyMovieSearch = require("APIcallsMyMovieSearch");
+router.post("/", function(req, res) {
 
-
-router.post("/", function (req, res) {
-    console.log("I am in the router.post - root")
-    var getMovieInfoURL = "https://www.omdbapi.com/?s=" + req.body.movieTitle + "&y=&plot=short&apikey=trilogy";
-
-    APIcallsMyMovieSearch.myMovieResult(getMovieInfoURL).then(function (response) {
-        console.log("response: ", response)
+    // var getMovieInfoURL="https://www.omdbapi.com/?t=" + req.body.movieTitle + "&y=&plot=short&apikey=trilogy";
+  
+    var getMovieInfoURL="http://www.omdbapi.com/?s=" + req.body.movieTitle + "&page=all&apikey=trilogy";
     
-        var placeHolder = {};
-        placeHolder = response.data;
-        
-        //   var topTen = 0;
-        console.log(placeHolder);
-        res.render("index-registered", { placeHolder: placeHolder });
-        // res.render("index-registered", { movies: placeHolder });
-        // return placeHolder;
-
-    })
-        .catch(function (error) {
+    APIcallsMyMovieSearch.myMovieResult(getMovieInfoURL).then(function (response) {
+  
+      //console.log(response.data);
+      var placeHolder = {};
+      var namesAndYears ={};
+      placeHolder = response.data;
+      var topTen = 0;
+      console.log(placeHolder);
+  
+      console.log("this Many "+response.data.Search.length);
+      
+      for (var i=0; i<response.data.Search.length;i++){
+        namesAndYears[response.data.Search[i].Title]=response.data.Search[i].Year;
+      }
+  console.log(namesAndYears);
+      res.render("index-registered",{namesAndYears:namesAndYears});
+      // return placeHolder;
+  
+  }).catch(function (error) {
             if (error.response) {
 
                 console.log(error.response.data);

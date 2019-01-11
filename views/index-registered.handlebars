@@ -17,37 +17,28 @@
                 <br>
                 <br>
                 <h2 class="text-center">The smart way to find movies.</h2>
-
-
-
-                <form action="/" method="POST">
-                    <textarea type="text" name="movieTitle" id="movie-name"></textarea>
-
-                    <button type="submit">Search for a movie or show here!</button>
-                </form>
-                 <h2 class="text-center">here the movies</h2>
-        hey its working bc it prints the title: {{this.placeHolder}}
-
-                {{!-- <div class="row pt-2 pb-5">
-                    <ul class="pl-5">
-                        {{#each placeHolder}}
+                
+        
+                <div class="row pt-2 pb-5">
+                    <h2 class="text-center">here the movies</h2>
+                    titles and yrs
+                    {{this.namesAndYears}}
+                    <ul>
+                        {{#each namesAndYears}}
                         <li>
-                            <div class="row pb-2">
-                                <div class="col">
-                                    {{Title}}
-                                </div>
-                                <div class="col">
-                                    {{Year}}
-                                </div>
-                                <div class="col">
-                                    {{imdbID}}
-                                </div>
-
-                            </div>
+                            <p>title: {{@key}}</p>
+                            <p>yr: {{this}}</p>
                         </li>
                         {{/each}}
                     </ul>
-                </div> --}}
+
+                    <form action="/" method="POST">
+                        {{!-- <form action="/:movie" method="GET"> --}}
+                            <textarea type="text" name="movieTitle"></textarea>
+
+                            <button type="submit">Search Movie</button>
+                        </form>
+                </div>
             </div>
         </div>
 
