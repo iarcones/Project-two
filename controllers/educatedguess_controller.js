@@ -289,26 +289,41 @@ router.get("/profile", function (req, res) {
 
     var userid = req.cookies.userid;
 
-    db.usermedia.findAll({
+    // db.Customerburger.findAll({
+    //     include: [{ association: 'Burger' }
+    //     ],
+    //     where: {
+    //         CustomerId: customerId,
+    //     },
+    //     order: [
+    //         ['counter', 'DESC']
+    //     ],
+    // }).then(function (dbBurgerCustomer) {
+    //     hbsObject.burgerscustomer = dbBurgerCustomer;
+    //     res.render("index", hbsObject);
+    // });
+    // db.Media.findAll({ 
+    // }).then(function (usermedia) {
+    //     console.log("usermedia", usermedia)
+
+    //     var hbsObject = {
+    //         usermedia: usermedia
+    //     };
+    //     res.render("index-profile", hbsObject);
+    // });
+
+    db.usermedia.findAll({ 
+        include: [db.Media],
         where: {
-            UserId: userid,
-        },
+                UserId: userid,
+        }
     }).then(function (usermedia) {
         console.log("usermedia", usermedia)
 
         var hbsObject = {
             usermedia: usermedia
         };
-
-        db.Media.findAll({
-            include: [{ association: 'usermedia' }
-            ]
-        }).then(function (media) {
-            hbsObject.media = media;
-            console.log(hbsObject);
-            res.render("index-profile", hbsObject);
-        });
-        // res.render("index-profile", hbsObject);
+        res.render("index-profile", hbsObject);
     });
     ////
 
