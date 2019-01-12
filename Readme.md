@@ -1,39 +1,66 @@
-# Project-two: "the goodreads for movies and tv shows but even much better :-)"
+# educatedGuess
 
-## Overview
+By EGT
+“Watch With Friends”
 
-In this project, I am using MySQL, Node, Express, Handlebars, Sequelize. Deployed in Heroku.
+## What is a Educated Guess?
 
-Try the app here: https://xxxxxxxxx.herokuapp.com/
+A media platform where users learn what their friends watch. TV and streaming options have never been better and yet everyone just watches the same stuff. Until now. With educated guess - you can discover media thats less heavily marketed yet beloved by your friends. And also avoid wasting time on schlok. 
 
-## Getting Started
+## Why do we need EG?
 
-#### These instructions will get you a copy of the project up and running on your local machine.
+To get access to your friends recommendations at the click of a button (or possibly a question to alexa). 
 
-1. Clone the repository
-2. Run nmp install 
+## Before EG:
+User:"uhhhh its same stuff on Netflix i dont know what to watch waaaaaaaa"
 
-## Built With
+## After EG:
+User:"omg Christie watched "BodyGuard" im totally gonna check it out, she has awesome taste!"
 
-- Html
-- Bootstrap
-- Javascript
-- Jquery
-- Nodejs
-- Express
-- Mysql
-- Sequelize
-- Handlebars
+## Demo Time!! 
 
-## Screenshots
-![](demo.gif)
+Check out the landing page https://educatedguess.herokuapp.com/
 
-## Comments
-
-In this project was important:
+## How does it work?
 
 
-## Authors
+1. User navigates to the site
+2. Logs/Signs Up
+3. Query APIs for: (displays upon page load)
+    Most popular Movies and Tv shows 
+4. User can search for movies/shows they've seen
+5. User can see what friends watched and their reviews
+
+## Design Process
+
+Outline Tasks
+Design Wireframe
+Research and Test APIs
+Divide and Conquer 
+Back End: 
+API query & response
+Firebase and Google for login
+MySql DB for data storage
+Logic
+Front End:
+UI Design
+CSS- Bootstrap
+JS Libraries jQuery & Bootstrap Carousel
+
+## Technology Used
+
+Ajax- jquery API call
+Firebase
+Sequelize
+Heroku
+Bootstrap library
+TMDB API / OMDB API
+
+## Future Intentions
+
+Add Alexa Skill.
+Add Twilio notifications.
+Integrate with Youtube/Hulu/Netflix.
 
 
 
