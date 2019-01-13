@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 1 
     },
     myreview: { 
-      type: DataTypes.INTEGER, 
+      type: DataTypes.STRING, 
       defaultValue: 1 
     }
   });

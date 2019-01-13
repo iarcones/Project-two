@@ -4,7 +4,7 @@ $(document).ready(function () {
         interval: 0
     })
 
-    $.get("/movies")
+    $.get("/movies/")
 
         .then(function (data) {
             console.log(data)
@@ -30,7 +30,6 @@ $(document).ready(function () {
             }
 
         })
-
 
 
     $.get("/tv")
@@ -63,13 +62,14 @@ $(document).ready(function () {
 // save movies to your profile
         $(".save-button").on("click", function(event) {
             console.log("I clicked", event)
-            var imdbid = $(this).data("id");
+            var themoviedbid = $(this).data("id");
             var title = $(this).data("title");
-        
-            console.log("imdbid", imdbid, " / ", title)
+            var pic = $(this).data("pic");
+
+            console.log("themoviedbid", themoviedbid, " / ", title, " / ", pic)
 
              // Send the PUT request.
-             $.ajax("/api/usermedia/" + imdbid + "/" + title, {
+             $.ajax("/api/usermedia/" + themoviedbid + "/" + title + pic, {
                 type: "POST",
                 data: true
             }).then(
@@ -78,7 +78,25 @@ $(document).ready(function () {
                     location.reload();
                 }
             );
-
+        
+    
+        });
+// delete movies to your profile
+        $(".delete").on("click", function(event) {
+            console.log("I clicked delete", event)
+            var themoviedbid = $(this).data("id");
+            console.log("themoviedbid", themoviedbid)
+             // Send the PUT request.
+             $.ajax("/api/usermedia/" + themoviedbid, {
+                type: "DELETE",
+                data: true
+            }).then(
+                function () {
+                    console.log("return")
+                    // Reload the page to get the updated list
+                    location.reload();
+                }
+            );
     
         });
     
@@ -88,7 +106,6 @@ $(document).ready(function () {
             console.log("I clicked on profile page", event)
             
          
-    
         });
     
 

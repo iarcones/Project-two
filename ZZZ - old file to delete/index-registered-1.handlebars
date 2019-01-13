@@ -1,0 +1,149 @@
+{{!-- my code here --}}
+
+
+{{!-- this is the page the user sees when they ARE LOGGED IN --}}
+
+<body class="auth-true registered-page">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-9">
+                <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <form action="/profile" method="GET">
+                        {{!-- <form action="/:movie" method="GET"> --}}
+                            <br>
+                            <br>
+                            <button class="profile-page" type="submit">Click to go to your profile</button>
+                        </form>
+
+
+                </div>
+            </div>
+        </div>
+        {{!-- <p>"LOGIN HERE JUST FOR TESTING"</p>
+        <button type="submit" class="google-login-button" id="googleLogin">Login with Google</button> --}}
+
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <h1>Welcome to your page! You're now logged in!</h1>
+                <br>
+                <h3 class="text-center">Search for a movie or show here to add to your profile.</h3>
+            </div>
+        </div>
+        <form action="/" method="POST">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <form class="card card-sm">
+                        <div class="card-body row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <i class="fas fa-search h4 text-body"></i>
+                            </div>
+                            <!--end of col-->
+                            <div class="col">
+                                <input class="form-control form-control-lg form-control-borderless" type="search"
+                                    placeholder="Search topics or keywords" name="movieTitle">
+                            </div>
+                            <!--end of col-->
+                            <div class="col-auto">
+                                <button class="btn btn-lg btn-success" type="submit">Search
+                                    movie</button>
+                            </div>
+                            <!--end of col-->
+                        </div>
+                    </form>
+                </div>
+                <!--end of col-->
+            </div>
+
+        </form>
+
+
+        <div class="row">
+
+
+                {{#each movies}}
+
+                {{!-- this will be for the photo --}}
+                
+                    <div class="col-3">
+                        <p>Photo {{title}}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>Title: {{title}}</p>
+                    </div>
+                    <div class="col-2">
+                        <p>Year: {{year}}</p>
+                    </div>
+                    <div class="col-1">
+                        <p>IMBD ID: {{imdbid}}</p>
+                    </div>
+                    <div class="col-2">
+                        <button class="save-button" data-id="{{this.imdbid}}" data-title="{{this.title}}">Add
+                            to Saved!</button>
+                    </div>
+                
+                {{/each}}
+                </row>
+            </div>
+
+        </div>
+
+    </div>
+
+
+        <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
+        <br>
+        <div id="movieCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox" id="movie-display">
+
+
+            </div>
+
+            <a class="carousel-control-prev" href="#movieCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#movieCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <br><br>
+    <div>
+
+        <h2 class="text-center">Scroll to find the top TV-Shows in 2018:</h2>
+        <br>
+        <div id="tvCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox" id="tv-display">
+
+
+            </div>
+
+            <a class="carousel-control-prev" href="#tvCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#tvCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <script src="assets/js/app.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/rating.js"></script>
+
+
+</body>

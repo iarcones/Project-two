@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {len: [1]}
     },
+    media_pic: {
+      type: DataTypes.STRING,
+      validate: {len: [1]}
+    },
     media_type: {
       type: DataTypes.STRING,
       validate: {len: [1]}
@@ -14,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING, 
       defaultValue: 0
     },
-    omdb_id: { 
+    themoviedb_id: { 
       type: DataTypes.STRING, 
       defaultValue: 0
     },

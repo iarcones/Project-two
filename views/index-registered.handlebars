@@ -1,130 +1,74 @@
-{{!-- my code here --}}
+<div class="container">
 
-
-{{!-- this is the page the user sees when they ARE LOGGED IN --}}
-
-<body class="auth-true registered-page">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-9">
-                <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
-            </div>
-            <div class="col-3">
-                <div class="row">
-                    <form action="/profile" method="GET">
-                        {{!-- <form action="/:movie" method="GET"> --}}
-                            <br>
-                            <br>
-                            <button class="profile-page" type="submit">Click to go to your profile</button>
-                        </form>
-
-
-                </div>
-            </div>
+    <div class="row mb-4 mt-4">
+        <div class="col-10">
+            <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
         </div>
-        {{!-- <p>"LOGIN HERE JUST FOR TESTING"</p>
-        <button type="submit" class="google-login-button" id="googleLogin">Login with Google</button> --}}
 
-
-        <div class="row">
-            <div class="col-lg-12">
-
-                <h1>Welcome to your page! You're now logged in!</h1>
-                <br>
-                <h3 class="text-center">Search for a movie or show here to add to your profile.</h3>
-            </div>
+        <div class="col-2">
+            <form action="/profile" method="GET">
+                {{!-- <form action="/:movie" method="GET"> --}}
+                    <button class="profile-page btn btn-primary btn-sm" type="submit">Click to go to your profile</button>
+                </form>
         </div>
-        <form action="/" method="POST">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <form class="card card-sm">
-                        <div class="card-body row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <i class="fas fa-search h4 text-body"></i>
-                            </div>
-                            <!--end of col-->
-                            <div class="col">
-                                <input class="form-control form-control-lg form-control-borderless" type="search"
-                                    placeholder="Search topics or keywords" name="movieTitle">
-                            </div>
-                            <!--end of col-->
-                            <div class="col-auto">
-                                <button class="btn btn-lg btn-success" type="submit">Search
-                                    movie</button>
-                            </div>
-                            <!--end of col-->
-                        </div>
-                    </form>
-                </div>
-                <!--end of col-->
-            </div>
+    </div>
 
+    <div class="row mb-4 mt-4">
+        <div class="col">
+            <h1 class="text-center">Welcome to your page! You're now logged in!</h1>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <h3 class="text-center mt-3 mb-3">Search for a movie or show here to add to your profile.</h3>
+        </div>
+    </div>
+
+    <div class="row mb-4 mt-4 justify-content-center">
+
+        <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search topics or keywords" aria-label="Search"
+                name="movieTitle">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search movie</button>
         </form>
-
-
-        {{!-- <div class="row pt-2 pb-5 saved-user-movies">
-            <div class="col">
-                <h2 class="text-center pt-3 pb-3 mb-4 backcol">Usermedia!</h2>
-                <ul class="pl-5">
-                    {{#each usermedia}}
-                    <li>
-                        <div class="row pb-2">
-                            <div class="col-2">
-                                {{MediumId}}
-                            </div>
-                            <div class="col-6">
-                                {{media_name}}
-                            </div>
-                            <div class="col-2">
-                                <button class="devour btn btn-warning btn-sm" data-id="{{this.id}}">Delete!</button>
-                            </div>
-                        </div>
-                    </li>
-
-                    {{/each}}
-                </ul>
-            </div> --}}
-            <div class="row">
-
-
-                {{#each movies}}
-
-                {{!-- this will be for the photo --}}
-                
-                    <div class="col-3">
-                        <p>Photo {{title}}</p>
-                    </div>
-                    <div class="col-2">
-                        <p>Title: {{title}}</p>
-                    </div>
-                    <div class="col-2">
-                        <p>Year: {{year}}</p>
-                    </div>
-                    <div class="col-1">
-                        <p>IMBD ID: {{imdbid}}</p>
-                    </div>
-                    <div class="col-2">
-                        <button class="save-button" data-id="{{this.imdbid}}" data-title="{{this.title}}">Add
-                            to Saved!</button>
-                    </div>
-                
-                {{/each}}
-                </row>
-            </div>
-
-        </div>
 
     </div>
 
-    <div>
+    <div class="row align-items-center">
+        {{#each movies}}
+        {{!-- this will be for the photo --}}
+        <div class="col-2"></div>
+        <div class="col-2">
+            <img style="width:100px;height:150px;" src="https://image.tmdb.org/t/p/w300/{{{pic}}}">
+        </div>
+        <div class="col-5 ">
+            <h3>{{title}} - {{year}}</h3>
+        </div>
 
-        <h2 class="text-center">Scroll to find the top Movies in 2018:</h2>
-        <br>
+        <div class="col-2">
+            <button class="save-button btn-sm btn-success" data-id="{{this.id}}" data-title="{{this.title}}" data-pic="{{this.pic}}">Add
+                to Saved!</button>
+        </div>
+         <div class="col-1"></div>
+        {{/each}}
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="row mt-2">
+    <div class="col">
+        <h2 class="text-center mt-3 mb-3">Scroll to find the top Movies in 2018:</h2>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col">
         <div id="movieCarousel" class="carousel slide w-100" data-ride="carousel">
-            <div class="carousel-inner w-100" role="listbox" id="movie-display">
-
-
+            <div class="carousel-inner w-100" role="listbox" id="movie-display" data-interval="false">
             </div>
 
             <a class="carousel-control-prev" href="#movieCarousel" role="button" data-slide="prev">
@@ -137,36 +81,31 @@
             </a>
         </div>
     </div>
-    <br><br>
-    <div>
+</div>
 
+<div class="row mt-4">
+    <div class="col">
         <h2 class="text-center">Scroll to find the top TV-Shows in 2018:</h2>
-        <br>
-        <div id="tvCarousel" class="carousel slide w-100" data-ride="carousel">
-            <div class="carousel-inner w-100" role="listbox" id="tv-display">
+    </div>
+</div>
 
-
-            </div>
-
-            <a class="carousel-control-prev" href="#tvCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#tvCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+<div class="row mt-2 mb-4">
+    <div id="tvCarousel" class="carousel slide w-100" data-ride="carousel" data-interval="false">
+        <div class="carousel-inner w-100" role="listbox" id="tv-display">
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
-    <script src="assets/js/app.js"> </script>
-    <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
-    <script src="assets/js/login.js"></script>
-    <script src="assets/js/rating.js"></script>
+        <a class="carousel-control-prev" href="#tvCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#tvCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+</div>
 
-
-</body>
+<script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/app.js"> </script>
