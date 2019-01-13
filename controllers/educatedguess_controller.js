@@ -155,24 +155,6 @@ router.post("/api/user", function (req, res) {
 
 // Update media table here with all our API call when user inputs data
 // should this be POST or PUT
-// router.post("/api/media/", function (req, res) {
-//     /// find Media if exist update and go to see if mediauser exist or not and update or create
-//     db.Media.update({
-//         omdb_id: req.body.omdbid,
-//         user_rating: req.body.rating
-
-//     }),
-//         { where: { id: id } }
-//             .then(function (dbMedia) {
-
-//                 res.json(dbMedia);
-//             });
-
-
-// });
-
-// Update media table here with all our API call when user inputs data
-// should this be POST or PUT
 
 router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function (req, res) {
     /// find Media if exist update and go to see if mediauser exist or not and update or create
@@ -222,6 +204,18 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function
     })
 })
 
+
+// var ratingNumber = req.params.rating;
+//    var ratingToSend="";
+//    function translateRatingToStar(rating){
+//        var number = parseInt(rating);
+//        for (var i=0; i<number;i++){
+//            ratingToSend+="*";
+//        }
+//        return ratingToSend;
+//    }
+//    rating = translateRatingToStar(ratingNumber);
+
 router.get("/profile", function (req, res) {
 
     var userid = req.cookies.userid;
@@ -258,6 +252,7 @@ router.delete("/api/usermedia/:id", function (req, res) {
 
 
 ////// OLEG
+
 
 var APIcallsMyMovieSearch = {
     myMovieResult: function (queryURL) {

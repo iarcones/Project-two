@@ -32,38 +32,6 @@
         </div>
     </div>
 
-  {{!-- row for the users saved movie title HEADINGS --}}
-    <div class="row pt-2 pb-5 saved-user-movies">
-        <div class="col">
-
-            <ul class="pl-5">
-
-                <li>
-                    <div class="row pb-2 align-items-center">
-                        <div class="col-2">
-                            <h3><strong>Photo</strong></h3>
-                        </div>
-                        <div class="prof-text col-2">
-                            <h3><strong>Title</strong></h3>
-                        </div>
-                        <div class="prof-text col-3">
-                            <h3><strong>Review</strong></h3>
-                        </div>
-                        <div class="prof-text col-3">
-                            <h3><strong>Rating</strong></h3>
-                        </div>
-                        <div class="col-2">
-                            <h3><strong>Remove</strong></h3>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-
-    </div>
-
-    {{!-- row for the users saved movies --}}
     <div class="row pt-2 pb-5 saved-user-movies">
         <div class="col">
 
@@ -74,14 +42,12 @@
                         <div class="col-2">
                             <img style="width:100px;height:150px;" src="https://image.tmdb.org/t/p/w300/{{{Medium.media_pic}}}">
                         </div>
-                        <div class="prof-text col-2">
+                        <div class="col-5">
                             <h3>{{Medium.media_name}}</h3>
                         </div>
-                        <div class="prof-text col-3">
-                            <h3>{{myreview}}</h3>
-                        </div>
-                        <div class="prof-text col-3">
-                            <h3> {{rating}}</h3>
+                        <div class="col-3">
+                            <h3>{{myreview}} - Rating:
+                                {{rating}}</h3>
                         </div>
                         <div class="col-2">
                             <button class="delete btn-warning btn-sm" data-id="{{this.id}}">Delete!</button>
