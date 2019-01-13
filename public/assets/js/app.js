@@ -106,7 +106,7 @@ $(document).ready(function () {
         var pic = $(this).data("pic");
         var review = $("#review").val().trim();
         var rating = $("#rating").val().trim();
-        var singleValues = $("#single").val();
+      
         console.log("themoviedbid", themoviedbid, " / ", title, " / ", pic, " / ", review, " / ", rating)
 
         // Send the POST request.
@@ -123,26 +123,6 @@ $(document).ready(function () {
 
     });
 
-
-    // delete movies to your profile
-    $("#searchfriends").on("click", function (event) {
-        console.log("I clicked search friends", event)
-        var friendName = $("#friendname").val().trim();
-        console.log(friendName)
-     
-        // Send the PUT request.
-        $.ajax("/api/friends/" + friendName, {
-            type: "GET",
-            data: true
-        }).then(
-            function () {
-                console.log("return")
-                // Reload the page to get the updated list
-                location.reload();
-            }
-        );
-
-    });
     // on click add to profile page
 
     $(".profile-page").on("click", function (event) {
@@ -150,6 +130,30 @@ $(document).ready(function () {
 
     });
 
+    // ///// FRIENDS 
+
+    // save friends to your profile
+
+    $(document).on("click", ".addfriend", function (event) {
+
+        console.log("I clicked add friend", event)
+        var friendid = $(this).data("id");
+        
+        console.log("themoviedbid", friendid)
+
+        // Send the POST request.
+        $.ajax("/api/addfriend/" + friendid, {
+            type: "POST",
+            data: true
+        }).then(
+            function () {
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+
+
+    });
 
 
 });

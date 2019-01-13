@@ -117,9 +117,6 @@ router.get("/tv", function (req, res) {
 
 });
 
-router.get("/friendspage", function (req, res) {
-    res.render("index-friends");
-}); 
 
 
 ///////  API ROUTES
@@ -150,42 +147,10 @@ router.post("/api/user", function (req, res) {
                     res.json(data);
                 });
         }
-        else{ res.json(data) };
+        else { res.json(data) };
     });
 });
 
-// route to friends SQL table here
-router.get("/api/friends/:friendname", function (req, res) {
-    
-    var friendName= req.body.friendname;
-    db.User.findAll({
-       where: {
-        user_name: {like: '%' + friendName + '%'}
-        }
-
-    }).then(function (users) {
-        var hbsObject = {
-            users: users
-        };
-        console.log(hbsObject)
-        res.render("index-friends", hbsObject);
-
-    });
-});
-// route to friends SQL table here
-router.post("/api/friends", function (req, res) {
-
-    db.Media.create({
-        media_name: req.body.name,
-        media_type: req.body.type,
-        omdb_id: req.body.omdbid,
-        user_rating: req.body.rating
-
-    }).then(function (dbMedia) {
-
-        res.json(dbMedia);
-    });
-});
 
 
 // Update media table here with all our API call when user inputs data
@@ -216,7 +181,7 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function
     var pic = req.params.pic;
     var review = req.params.review;
     var rating = req.params.rating;
-    
+
 
     db.Media.findOne({
         where: {
@@ -242,7 +207,7 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function
                         res.json(data);
                     });
             })
-        } else{
+        } else {
             db.usermedia.create({
                 MediumId: data.id,
                 UserId: req.cookies.userid,
@@ -251,7 +216,7 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function
             })
                 .then(function (data) {
                     res.json(data);
-                }); 
+                });
         }
 
     })
@@ -261,20 +226,20 @@ router.get("/profile", function (req, res) {
 
     var userid = req.cookies.userid;
 
-    db.usermedia.findAll({ 
+    db.usermedia.findAll({
         include: [db.Media],
         where: {
-                UserId: userid,
+            UserId: userid,
         }
     }).then(function (usermedia) {
-        
+
         var hbsObject = {
             usermedia: usermedia
         };
         console.log(hbsObject)
         res.render("index-profile", hbsObject);
     });
-  
+
 });
 
 
@@ -282,28 +247,15 @@ router.delete("/api/usermedia/:id", function (req, res) {
     console.log("inside delete")
     var id = req.params.id;
     db.usermedia.destroy({
-        where: {id: id}
-    
-    }).then(function(data) {
-        console.log("delete: ",  data);
-                res.json(data);
-            });
+        where: { id: id }
+
+    }).then(function (data) {
+        console.log("delete: ", data);
+        res.json(data);
+    });
 });
 
 
-// get request for FRIENDS table
-// router.get("/api/friends/:id", function (req, res) {
-
-//     db.Friends.findAll({
-
-//     }),
-//         { where: { id: id } }
-//             .then(function (dbMedia) {
-//                 res.json(dbMedia);
-//             });
-
-
-// });
 
 ////// OLEG
 
@@ -328,7 +280,7 @@ router.post("/search", function (req, res) {
     var getMovieInfoURL = "https://api.themoviedb.org/3/search/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&query=" + req.body.movieTitle + "&page=1&include_adult=false"
 
     APIcallsMyMovieSearch.myMovieResult(getMovieInfoURL).then(function (response) {
-     
+
         var placeHolder = {};
         var namesAndYears = {};
         placeHolder = response.data.results;
@@ -338,9 +290,9 @@ router.post("/search", function (req, res) {
         console.log("this Many " + response.data.results.length);
 
         var movies = [];
-        
+
         for (var i = 0; i < response.data.results.length; i++) {
-       
+
             var movie = {};
             movie.pic = response.data.results[i].poster_path
             movie.title = response.data.results[i].title;
@@ -374,6 +326,71 @@ router.post("/search", function (req, res) {
 
 });
 
+
+///// FRIENDS /////
+
+
+// router.get("/friendspage", function (req, res) {
+//     res.render("index-friends");
+// }); 
+
+
+router.post("/searchfriends", function (req, res) {
+    // route to friends SQL table here
+    console.log("router post searchfriends");
+
+    var friendName = req.body.friendname;
+
+    db.User.findAll({
+        where:{
+         user_name: { like: '%' + friendName + '%' }
+        }
+    }).then(function (users) {
+        console.log(users)
+        var hbsObject = {
+            users: users
+        };
+        console.log(hbsObject)
+        res.render("index-friends", hbsObject);
+
+    });
+
+});
+
+
+router.post("/api/addfriend/:id", function (req, res) {
+    console.log("router get api/friends in search");
+    console.log(req)
+    var id = req.params.id;
+    console.log("friendid: ", id)
+    db.Friend.create({
+        UserId : id,
+        friendUserId : req.cookies.userid
+    }).then(function (friend) {
+        console.log(friend)
+       res.json(friend);
+    });
+});
+
+router.get("/friendspage", function (req, res) {
+
+    var userid = req.cookies.userid;
+
+    db.Friend.findAll({
+        include: [db.User],
+        where: {
+            friendUserId: userid,
+        }
+    }).then(function (friends) {
+        console.log(friends)
+        var hbsObject = {
+            friends: friends
+        };
+        console.log(hbsObject)
+        res.render("index-friends", hbsObject);
+    });
+
+});
 module.exports = router;
 
 

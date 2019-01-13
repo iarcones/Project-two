@@ -12,57 +12,98 @@
             <h1 class="text-center">Welcome to your friends page.</h1>
         </div>
     </div>
-    <div class="row mt-2">
-        <div class="col">
-            <h2 class="text-center mt-3 mb-3">These are your friends movies and shows</h2>
-        </div>
-    </div>
-{{!-- friends search --}}
-
-<form>
-  <div class="form-group">
-    <label for="friendsname">Friends Name</label>
-    <input type="text" class="form-control" id="friendname"  placeholder="Enter friends name">
-  </div>
-  <button type="submit" id="searchfriends" class="btn btn-primary">Search</button>
-</form>
-
-<form>
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="text" class="form-control" id="phonenumber" placeholder="phone number">
-  </div>
-  <button type="submit" id="invitefriends" class="btn btn-primary">Search</button>
-</form>
 
 
-{{!-- show friends movies and shows --}}
-    <div class="row pt-2 pb-5 saved-user-movies">
-        <div class="col">
+    <div class="row">
+        <div class="col-8">
+            <div class="row mt-2">
+                <div class="col">
+                    <h2 class="text-center mt-3 mb-3">These are your friends movies and shows</h2>
+                </div>
+            </div>
+            {{!-- show friends --}}
+            <div class="row pt-2 pb-5 saved-user-movies">
+                <div class="col">
 
-            <ul class="pl-5">
-                {{#each users}}
-                <li>
-                    <div class="row pb-2 align-items-center">
-                
-                        <div class="col-5">
-                            <h3>{{user_name}}</h3>
-                        </div>
-                    
-                        <div class="col-2">
-                            <button class="addfriend btn-warning btn-sm" data-id="{{this.id}}">Add friend!</button>
-                        </div>
-                    </div>
-                </li>
+                    <ul class="pl-5">
+                        {{#each friends}}
+                        <li>
+                            <div class="row pb-2 align-items-center">
 
-                {{/each}}
-            </ul>
+                                <div class="col-5">
+                                    <h3>{{User.user_name}}</h3>
+                                </div>
+
+                                <div class="col-5">
+                                    <button class="showfriendsmedia btn-warning btn-sm" data-id="{{this.id}}">What are you watching!</button>
+                                </div>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
+        <div class="col-4">
+            {{!-- friends search --}}
+            <div class="row mt-2">
+                <div class="col">
+                    <h2 class="text-center mt-3 mb-3">Find your friends and follow them</h2>
+                </div>
+            </div>
+            <div class="row mb-4 mt-4 justify-content-center">
+
+                <form class="form-inline my-2 my-lg-0" action="/searchfriends" method="POST">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search topics or keywords"
+                        aria-label="Search" name="friendname">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search friends</button>
+                </form>
+
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                    <h2 class="text-center mt-3 mb-3">Invite your friends</h2>
+                </div>
+            </div>
+            {{!-- invite friends --}}
+            <div class="row mb-4 mt-4 justify-content-center">
+
+                <form class="form-inline my-2 my-lg-0" action="/invitefriends" method="POST">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search topics or keywords"
+                        aria-label="Search" name="phonenumber">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Invite friends</button>
+                </form>
+            </div>
+
+            {{!-- show users --}}
+            <div class="row pt-2 pb-5 saved-user-movies">
+                <div class="col">
+
+                    <ul class="pl-5">
+                        {{#each users}}
+                        <li>
+                            <div class="row pb-2 align-items-center">
+
+                                <div class="col-5">
+                                    <h3>{{user_name}}</h3>
+                                </div>
+
+                                <div class="col-2">
+                                    <button class="addfriend btn-warning btn-sm" data-id="{{this.id}}">Add friend!</button>
+                                </div>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
+
 
 </div>
-
 <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
 <script src="assets/js/login.js"></script>
 <script src="assets/js/app.js"> </script>
