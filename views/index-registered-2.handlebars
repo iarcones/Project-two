@@ -47,8 +47,8 @@
         </div>
 
         <div class="col-2">
-            <button class="btn-sm btn-success" data-toggle="modal" 
-            data-target="#modalrating" data-id="{{this.id}}" data-title="{{this.title}}" data-pic="{{this.pic}}">Add to Saved!</button>
+            <button class="save-button btn-sm btn-success" data-id="{{this.id}}" data-title="{{this.title}}" data-pic="{{this.pic}}">Add
+                to Saved!</button>
         </div>
          <div class="col-1"></div>
         {{/each}}
@@ -103,79 +103,6 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-</div>
-
-
-
-{{!-- Modal to grab info about the movie  --}}
-
-<div class="modal fade" id="modalxxxxx" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-     <h3>{{this.id}} - {{this.title}} - {{this.pic}}</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <div class="col-4">
-            <button class="save-button btn-sm btn-success" data-toggle="modal" 
-            data-target="#modalrating" data-id="{{this.id}}" data-title="{{this.title}}" data-pic="{{this.pic}}" data-rating="{{this.rating}}" data-review="{{this.review}}">Add to Saved!</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-{{!-- other modal --}}
-
-
-<a href="#" class="my_link" data-val="user1" data-toggle="modal" data-target="#my-modal">Open Modal</a>
-
-<div class="modal fade" id="modalrating" tabindex="-1" role="dialog" aria-labelledby="my-modal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">My Modal</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="review" class="col-form-label">Review:</label>
-            <input type="text" class="form-control" id="review">
-          </div>
-          <div class="form-group">
-            <label for="rating" class="col-form-label">Rating:</label>
-            <textarea class="form-control" id="rating"></textarea>
-          </div>
-        </form>
-      </div>
-   
-      <div class="modal-footer">
-      <div class="col-4">
-            <button class="save-button btn-sm btn-success" data-toggle="modal" 
-            data-target="#modalrating" data-id="{{this.id}}" data-title="{{this.title}}" data-pic="{{this.pic}}" data-rating="{{this.rating}}" data-review="{{this.review}}">Add to Saved!</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 </div>
 

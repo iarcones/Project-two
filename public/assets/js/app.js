@@ -100,8 +100,18 @@ $(document).ready(function () {
     
         });
     
+        $('#modalrating').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('id');
+            var title = $(event.relatedTarget).data('title');
+            var pic = $(event.relatedTarget).data('pic');
+            console.log(id, title, pic);
+            $(this).find(".modal-title").text(id);
+            $(this).find(".modal-title").append(title);
+            $(this).find(".modal-title").append(pic);
+          });
         // on click add to profile page
     
+
         $(".profile-page").on("click", function(event) {
             console.log("I clicked on profile page", event)
             
