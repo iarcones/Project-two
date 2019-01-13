@@ -9,10 +9,8 @@ var db = require("../models");
 ////////////// ROUTES
 /////
 
-// router.post("/profile", function (req, res) {
-//     res.render("index-profile");
-// })
-/////
+///////  HTML ROUTES
+
 // first need to check if user is registered
 
 router.get("/", function (req, res) {
@@ -35,8 +33,6 @@ router.get("/", function (req, res) {
         res.render("index");
     }
 });
-
-
 
 
 // new route here for API call
@@ -120,54 +116,13 @@ router.get("/tv", function (req, res) {
         });
 
 });
-// new route here for API call
-// router.get("/omdbmovies/:title", function (req, res) {
 
-//     var title = req.body.title
-//     var getMovieInfoURL="https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
-//     // Run the axios.get function...
-//     // The axios.get function takes in a URL and returns a promise (just like $.ajax)
-//     axios
-//         .get(getMovieInfoURL)
+router.get("/friendspage", function (req, res) {
+    res.render("index-friends");
+}); 
 
 
-//         //https://api.themoviedb.org/3/movie/now_playing?api_key=32a91bda53591f9bf3267b9088686a93&primary_release_year=2018&sort_by=vote_average.desc
-
-//         //https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018
-
-//         .then(function (response) {
-//             // If the axios was successful...
-//             // Then log the body from the site!
-//             //console.log(response.data);
-
-//             // console.log(response)
-
-//             // console.log(response.data.results[0].title)
-//             var movies = response.data.results;
-//             // console.log(data[0])
-//             console.log(movies);
-//             res.send(movies)
-
-//         })
-//         .catch(function (error) {
-//             if (error.response) {
-//                 // The request was made and the server responded with a status code
-//                 // that falls out of the range of 2xx
-//                 console.log(error.response.data);
-//                 console.log(error.response.status);
-//                 console.log(error.response.headers);
-//             } else if (error.request) {
-//                 // The request was made but no response was received
-//                 // `error.request` is an object that comes back with details pertaining to the error that occurred.
-//                 console.log(error.request);
-//             } else {
-//                 // Something happened in setting up the request that triggered an Error
-//                 console.log("Error", error.message);
-//             }
-//             console.log(error.config);
-//         });
-
-// });
+///////  API ROUTES
 
 
 // users table here-post
@@ -199,20 +154,38 @@ router.post("/api/user", function (req, res) {
     });
 });
 
-// // route to friends SQL table here
-// router.post("/api/friends", function (req, res) {
+// route to friends SQL table here
+router.get("/api/friends/:friendname", function (req, res) {
+    
+    var friendName= req.body.friendname;
+    db.User.findAll({
+       where: {
+        user_name: {like: '%' + friendName + '%'}
+        }
 
-//     db.Media.create({
-//         media_name: req.body.name,
-//         media_type: req.body.type,
-//         omdb_id: req.body.omdbid,
-//         user_rating: req.body.rating
+    }).then(function (users) {
+        var hbsObject = {
+            users: users
+        };
+        console.log(hbsObject)
+        res.render("index-friends", hbsObject);
 
-//     }).then(function (dbMedia) {
+    });
+});
+// route to friends SQL table here
+router.post("/api/friends", function (req, res) {
 
-//         res.json(dbMedia);
-//     });
-// });
+    db.Media.create({
+        media_name: req.body.name,
+        media_type: req.body.type,
+        omdb_id: req.body.omdbid,
+        user_rating: req.body.rating
+
+    }).then(function (dbMedia) {
+
+        res.json(dbMedia);
+    });
+});
 
 
 // Update media table here with all our API call when user inputs data
@@ -303,6 +276,7 @@ router.get("/profile", function (req, res) {
     });
   
 });
+
 
 router.delete("/api/usermedia/:id", function (req, res) {
     console.log("inside delete")

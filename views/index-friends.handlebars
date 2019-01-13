@@ -1,0 +1,68 @@
+<div class="container">
+
+    <div class="row mb-4 mt-4">
+        <div class="col-8">
+            <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
+        </div>
+
+    </div>
+
+    <div class="row mb-4 mt-4">
+        <div class="col">
+            <h1 class="text-center">Welcome to your friends page.</h1>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <h2 class="text-center mt-3 mb-3">These are your friends movies and shows</h2>
+        </div>
+    </div>
+{{!-- friends search --}}
+
+<form>
+  <div class="form-group">
+    <label for="friendsname">Friends Name</label>
+    <input type="text" class="form-control" id="friendname"  placeholder="Enter friends name">
+  </div>
+  <button type="submit" id="searchfriends" class="btn btn-primary">Search</button>
+</form>
+
+<form>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" id="phonenumber" placeholder="phone number">
+  </div>
+  <button type="submit" id="invitefriends" class="btn btn-primary">Search</button>
+</form>
+
+
+{{!-- show friends movies and shows --}}
+    <div class="row pt-2 pb-5 saved-user-movies">
+        <div class="col">
+
+            <ul class="pl-5">
+                {{#each users}}
+                <li>
+                    <div class="row pb-2 align-items-center">
+                
+                        <div class="col-5">
+                            <h3>{{user_name}}</h3>
+                        </div>
+                    
+                        <div class="col-2">
+                            <button class="addfriend btn-warning btn-sm" data-id="{{this.id}}">Add friend!</button>
+                        </div>
+                    </div>
+                </li>
+
+                {{/each}}
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/app.js"> </script>

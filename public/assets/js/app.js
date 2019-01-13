@@ -123,6 +123,26 @@ $(document).ready(function () {
 
     });
 
+
+    // delete movies to your profile
+    $("#searchfriends").on("click", function (event) {
+        console.log("I clicked search friends", event)
+        var friendName = $("#friendname").val().trim();
+        console.log(friendName)
+     
+        // Send the PUT request.
+        $.ajax("/api/friends/" + friendName, {
+            type: "GET",
+            data: true
+        }).then(
+            function () {
+                console.log("return")
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+
+    });
     // on click add to profile page
 
     $(".profile-page").on("click", function (event) {

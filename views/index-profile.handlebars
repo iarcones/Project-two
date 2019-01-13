@@ -1,8 +1,15 @@
 <div class="container">
 
     <div class="row mb-4 mt-4">
-        <div class="col-10">
+        <div class="col-8">
             <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
+        </div>
+
+        <div class="col-2">
+            <form action="/friendspage" method="GET">
+                {{!-- <form action="/friends" method="GET"> --}}
+                    <button class="friends btn btn-primary btn-sm" type="submit">FRIENDS</button>
+                </form>
         </div>
 
         <div class="col-2">
@@ -29,14 +36,14 @@
                 <li>
                     <div class="row pb-2 align-items-center">
                         <div class="col-2">
-                         <img style="width:100px;height:150px;" src="https://image.tmdb.org/t/p/w300/{{{Medium.media_pic}}}">
+                            <img style="width:100px;height:150px;" src="https://image.tmdb.org/t/p/w300/{{{Medium.media_pic}}}">
                         </div>
                         <div class="col-5">
                             <h3>{{Medium.media_name}}</h3>
                         </div>
-                         <div class="col-3">
-                            <h3>{{myreview}} - 
-                             {{rating}}</h3>
+                        <div class="col-3">
+                            <h3>{{myreview}} - Rating:
+                                {{rating}}</h3>
                         </div>
                         <div class="col-2">
                             <button class="delete btn-warning btn-sm" data-id="{{this.id}}">Delete!</button>
@@ -48,23 +55,10 @@
             </ul>
         </div>
 
-
-        <ul>
-            {{#each selected_movies}}
-            <li>
-                <p>Title: {{title}}</p>
-                <p>Year: {{year}}</p>
-                data-id="{{this.imdbid}}"
-                <button class="delete-button">Delete</button>
-            </li>
-            {{/each}}
-        </ul>
-
-
     </div>
 
 
-{{!-- ///////////////// Pending --}}
+    {{!-- ///////////////// Pending --}}
 
     <div class="rating-div">
         <div class="row">
