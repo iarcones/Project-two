@@ -2,7 +2,7 @@ var express = require("express");
 
 var router = express.Router();
 var axios = require("axios");
-// Import the model (burger.js) to use its database functions.
+
 var db = require("../models");
 
 
@@ -55,11 +55,6 @@ router.get("/movies", function (req, res) {
         .then(function (response) {
             // If the axios was successful...
             // Then log the body from the site!
-            //console.log(response.data);
-
-            // console.log(response)
-
-            // console.log(response.data.results[0].title)
             var movies = response.data.results;
             res.send(movies)
 
@@ -241,11 +236,14 @@ router.post("/api/user", function (req, res) {
 // Update media table here with all our API call when user inputs data
 // should this be POST or PUT
 
-router.post("/api/usermedia/:themoviedbid/:title/:pic", function (req, res) {
+router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function (req, res) {
     /// find Media if exist update and go to see if mediauser exist or not and update or create
     var themoviedbid = req.params.themoviedbid;
     var title = req.params.title;
     var pic = req.params.pic;
+    var review = req.params.review;
+    var rating = req.params.rating;
+    
 
     db.Media.findOne({
         where: {
@@ -263,7 +261,9 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic", function (req, res) {
                 // console.log("id: ", data.id)
                 db.usermedia.create({
                     MediumId: data.id,
-                    UserId: req.cookies.userid
+                    UserId: req.cookies.userid,
+                    myreview: review,
+                    rating: rating
                 })
                     .then(function (data) {
                         res.json(data);
@@ -272,7 +272,9 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic", function (req, res) {
         } else{
             db.usermedia.create({
                 MediumId: data.id,
-                UserId: req.cookies.userid
+                UserId: req.cookies.userid,
+                myreview: review,
+                rating: rating
             })
                 .then(function (data) {
                     res.json(data);
@@ -400,54 +402,4 @@ router.post("/search", function (req, res) {
 
 module.exports = router;
 
-// // find all search method
-// db.Customermedia.findAll({
-//     include: [{ association: 'Burger' }
-//     ],
-//     where: {
-//         CustomerId: customerId,
-//     },
-//     order: [
-//         ['counter', 'DESC']
-//     ],
-// }).then(function (dbMediaCustomer) {
-//     hbsObject.mediacustomer = dbMediaCustomer;
-//     res.render("index", hbsObject);
-// });
-
-
-
-
-// router.put("/api/devoured/:id/:customerId", function (req, res) {
-//     burger = req.params.id;
-//     client = req.params.customerId;
-
-//     db.Burger.increment('burger_counter', { where: { id: req.params.id } }).then(function (data) {
-//         console.log("client: ", client)
-//         if (client !== 'null') {
-//             console.log("client in the if: ", client)
-//             db.Customerburger.increment('counter', { where: { BurgerId: burger, CustomerId: client } }).then(function (data) {
-
-//                 /// if rec doesn't exist create and counter = 1;
-//                 if (data[0][1] === (0)) {
-//                     db.Customerburger.create(
-//                         {
-//                             BurgerId: burger,
-//                             CustomerId: client
-//                         })
-//                         .then(function (dbcustomerburger) {
-//                             res.json(dbcustomerburger);
-//                         });
-//                 }
-//                 else {
-//                     res.json(data);
-//                 }
-//             });
-//         }
-//         else {
-//             res.json(data);
-//         }
-//     });
-
-// });
 
