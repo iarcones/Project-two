@@ -86,23 +86,23 @@ $(document).ready(function () {
     });
 
 
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            console.log("listener-user")
-            console.log(user)
-            // User is signed in.
-        } else {
+    // firebase.auth().onAuthStateChanged(function (user) {
+    //     if (user) {
+    //         console.log("listener-user")
+    //         console.log(user)
+    //         // User is signed in.
+    //     } else {
 
-            // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
-            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "useremail; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            console.log("no logged")
-            location.reload();
-            // No user is signed in.
-        }
-    });
+    //         // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
+    //         document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //         document.cookie = "useremail; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //         document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //         document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+    //         console.log("no logged")
+    //         location.reload();
+    //         // No user is signed in.
+    //     }
+    // });
 
 
     // Sign out using built-in Firebase function on click of logout button
