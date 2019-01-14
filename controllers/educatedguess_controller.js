@@ -240,7 +240,7 @@ router.get("/profile", function (req, res) {
 router.post("/friendsinfo/:id", function (req, res) {
     console.log(req.params)
     var friendId = req.params.id;
-    console.log("friendId" ,friendId)
+    console.log("friendId", friendId)
 
     db.usermedia.findAll({
         include: [db.Media],
@@ -436,15 +436,20 @@ router.post("/invitefriends", function (req, res) {
     // const client = require('twilio')(accountSid, authToken);
     //twilio config
 
-    var keys = require("../keys.js");
-    var twilioKeys = new twilio({
-        id: keys.twilio.id,
-        secret: keys.twilio.secret
-    });
-    var id = twilioKeys.id;
-    var secret = twilioKeys.secret
-    console.log(id)
-    // const client = require('twilio')(id, secret);
+    // var keys = require("../keys.js");
+
+    require('dotenv').config();
+    console.log('Your environment variable TWILIO_ACCOUNT_SID has the value: ', process.env.TWILIO_ACCOUNT_SID);
+    // var twilio = require("twilio")
+    // var twilioKeys = new twilio({
+    //     id: keys.twilio.id,
+    //     secret: keys.twilio.secret
+    // });
+
+    var id = process.env.TWILIO_ACCOUNT_SID;
+    var secret = process.env.TWILIO_TOKEN
+
+    const client = require('twilio')(id, secret);
 
     // route to friends SQL table here
     console.log("I clicked invite friend")
@@ -452,18 +457,18 @@ router.post("/invitefriends", function (req, res) {
     var phoneNumber = req.body.phonenumber;
     var friendId = req.cookies.userid;
     // // var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/invited/" + friendId
-    // var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
-    // console.log("friendPhone", phoneNumber)
+    var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
+    console.log("friendPhone", phoneNumber)
 
-    // client.messages
-    //     .create({
-    //         body: invitation,
-    //         from: '+14155824287',
-    //         to: phoneNumber
-    //     })
-    //     .then(message => console.log(message.sid)
-    //     )
-    //     .done(res.render("index-friends"));
+    client.messages
+        .create({
+            body: invitation,
+            from: '+14155824287',
+            to: phoneNumber
+        })
+        .then(message => console.log(message.sid)
+        )
+        .done(res.render("index-friends"));
 
 });
 

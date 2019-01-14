@@ -102,10 +102,15 @@ img{
     padding: 8px;
     height: 35px;
   width: 35px;
+
   border-radius: 50%;
   Background-size: 100%;
 }
 
+.glyphicon{
+    font-size: 25px;
+    color: red;
+  }
 
 * {
     box-sizing: border-box;
@@ -173,3 +178,33 @@ p {
 
       color:black
   }
+
+
+  
+
+  #add2list{
+    background-repeat: repeat-x;    
+    height:121px;
+    width: 984px;
+    margin-left: 20px;
+    margin-top: 13px;
+}
+
+#add2list .content{    
+    width: 182px; /*328 co je 1/3 - 20margin left*/
+    height: 121px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right:0px;
+    display:inline-block;
+    position:relative;
+}
+
+#add2list .content a {
+    position:absolute;
+    bottom:5px;
+    right:5px;
+    background:blue;
+    color:#FFF;
+}
