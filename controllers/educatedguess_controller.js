@@ -43,11 +43,6 @@ router.get("/movies", function (req, res) {
     axios
         .get("https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2019")
 
-
-        //https://api.themoviedb.org/3/movie/now_playing?api_key=32a91bda53591f9bf3267b9088686a93&primary_release_year=2018&sort_by=vote_average.desc
-
-        //https://api.themoviedb.org/3/discover/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_year=2018
-
         .then(function (response) {
             // If the axios was successful...
             // Then log the body from the site!
@@ -84,18 +79,11 @@ router.get("/tv", function (req, res) {
 
 
         .then(function (response) {
-            // If the axios was successful...
-            // Then log the body from the site!
-            //console.log(response.data);
-
-            // console.log(response)
-
-            // console.log(response.data.results[0].title)
+            // If the axios was successful...Then log the body from the site!
+            // save axious query into variable named `tv`
             var tv = response.data.results;
-            // // console.log(data[0])
-            // console.log("TV", tv);
+            // send this object/response to Handlebars
             res.send(tv)
-
         })
         .catch(function (error) {
             if (error.response) {
@@ -323,7 +311,7 @@ router.post("/search", function (req, res) {
             var movie = {};
             movie.pic = response.data.results[i].poster_path
             movie.title = response.data.results[i].title;
-            movie.year = response.data.results[i].release_date.substr(0,4);
+            movie.year = response.data.results[i].release_date.substr(0, 4);
             movie.id = response.data.results[i].id;
             movies.push(movie);
             // namesAndYears[response.data.Search[i].Title]=response.data.Search[i].Year;
@@ -443,14 +431,19 @@ router.post("/invitefriends", function (req, res) {
     //     secret: keys.twilio.secret
     // });
 
+    console.log("I am in the invitefriends route")
 
     require('dotenv').config();
-   
+
+    console.log("I am in the invitefriends route-1")
+
     var id = process.env.TWILIO_ACCOUNT_SID;
     var secret = process.env.TWILIO_TOKEN
+ console.log("I am in the invitefriends route-2")
 
     const client = require('twilio')(id, secret);
-
+ console.log("I am in the invitefriends route-3")
+ 
     // route to friends SQL table here
     console.log("I clicked invite friend")
     var friendName = req.cookies.firstname;

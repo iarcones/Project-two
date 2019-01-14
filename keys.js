@@ -6,7 +6,7 @@ exports.spotify = {
 };
 
 exports.twilio = {
-  id: process.env.TWILIO_ID,
+  id: process.env.TWILIO_ACCOUNT_SID,
   secret: process.env.TWILIO_TOKEN
 };
 
