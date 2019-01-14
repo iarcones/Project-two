@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
   // Syncs with DB
-  // Customerburger.sync();
+  // usermedia.sync();
   return usermedia;
 };
 

@@ -7,7 +7,7 @@ var db = require("../models");
 
 
 ////////////// ROUTES
-/////
+
 
 ///////  HTML ROUTES
 
@@ -163,6 +163,17 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function
     var pic = req.params.pic;
     var review = req.params.review;
     var rating = req.params.rating;
+    // var ratingNumber = req.params.rating;
+    //    var ratingToSend="";
+    //    function translateRatingToStar(rating){
+    //        var number = parseInt(rating);
+    //        for (var i=0; i<number;i++){
+    //            ratingToSend+="*";
+    //        }
+    //        return ratingToSend;
+    //    }
+    //    rating = translateRatingToStar(ratingNumber);
+
 
 
     db.Media.findOne({
@@ -205,16 +216,6 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function
 })
 
 
-// var ratingNumber = req.params.rating;
-//    var ratingToSend="";
-//    function translateRatingToStar(rating){
-//        var number = parseInt(rating);
-//        for (var i=0; i<number;i++){
-//            ratingToSend+="*";
-//        }
-//        return ratingToSend;
-//    }
-//    rating = translateRatingToStar(ratingNumber);
 
 router.get("/profile", function (req, res) {
 
@@ -253,6 +254,17 @@ router.delete("/api/usermedia/:id", function (req, res) {
 
 ////// OLEG
 
+// var ratingNumber = req.params.rating;
+//     var ratingToSend = "";
+
+//     function translateRatingToStar(ratinginput) {
+//         var number = parseInt(ratinginput);
+//         for (var i = 0; i < number; i++) {
+//             ratingToSend += "*";
+//         }
+//         return ratingToSend;
+//     }
+//     rating = translateRatingToStar(ratingNumber);
 
 var APIcallsMyMovieSearch = {
     myMovieResult: function (queryURL) {
@@ -337,8 +349,8 @@ router.post("/searchfriends", function (req, res) {
     var friendName = req.body.friendname;
 
     db.User.findAll({
-        where:{
-         user_name: { like: '%' + friendName + '%' }
+        where: {
+            user_name: { like: '%' + friendName + '%' }
         }
     }).then(function (users) {
         console.log(users)
@@ -359,11 +371,11 @@ router.post("/api/addfriend/:id", function (req, res) {
     var id = req.params.id;
     console.log("friendid: ", id)
     db.Friend.create({
-        UserId : id,
-        friendUserId : req.cookies.userid
+        UserId: id,
+        friendUserId: req.cookies.userid
     }).then(function (friend) {
         console.log(friend)
-       res.json(friend);
+        res.json(friend);
     });
 });
 
@@ -386,6 +398,30 @@ router.get("/friendspage", function (req, res) {
     });
 
 });
+
+router.post("/invitefriends", function (req, res) {
+    // route to friends SQL table here
+    console.log("I clicked invite friend")
+
+    var phoneNumber = req.body.phonenumber;
+    var invitation = "first test"
+    console.log("friendPhone", phoneNumber)
+    
+    const accountSid = 'AC9723dcccf5692a9d642368a8bac06f4e';
+    const authToken = 'b2e7f40faff188889915b72c64b8438c';
+    const client = require('twilio')(accountSid, authToken);
+
+    client.messages
+        .create({
+            body: invitation,
+            from: '+14155824287',
+            to: phoneNumber
+        })
+        .then(message => console.log(message.sid))
+        .done();
+
+});
+
 module.exports = router;
 
 

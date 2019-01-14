@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
   };
   // Syncs with DB
-  // Burger.sync();
+  // Media.sync();
   return Media;
 };
 

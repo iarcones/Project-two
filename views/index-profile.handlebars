@@ -33,13 +33,13 @@
     </div>
 
   {{!-- row for the users saved movie title HEADINGS --}}
-    <div class="row pt-2 pb-5 saved-user-movies">
+    <div class="row saved-user-movies">
         <div class="col">
 
-            <ul class="pl-5">
+            <ul class="">
 
                 <li>
-                    <div class="row pb-2 align-items-center">
+                    <div class="row  align-items-center">
                         <div class="col-2">
                             <h3><strong>Photo</strong></h3>
                         </div>
@@ -64,13 +64,13 @@
     </div>
 
     {{!-- row for the users saved movies --}}
-    <div class="row pt-2 pb-5 saved-user-movies">
+    <div class="row saved-user-movies">
         <div class="col">
 
-            <ul class="pl-5">
+            <ul class="">
                 {{#each usermedia}}
                 <li>
-                    <div class="row pb-2 align-items-center">
+                    <div class="row align-items-center">
                         <div class="col-2">
                             <img style="width:100px;height:150px;" src="https://image.tmdb.org/t/p/w300/{{{Medium.media_pic}}}">
                         </div>
@@ -95,28 +95,6 @@
 
     </div>
 
-
-    {{!-- ///////////////// Pending --}}
-
-    <div class="rating-div">
-        <div class="row">
-            <h4>Give your movie/show rating here <small>Hover and click on a star</small></h2>
-        </div>
-        <div class="row lead">
-            <div id="stars-existing" class="starrr" data-rating='4'></div>
-            You gave a rating of <span id="count-existing">4</span> star(s)
-        </div>
-    </div>
-
-    {{!-- add your comment here --}}
-
-    <form>
-        <div class="form-group comment-div">
-            <label for="formGroupExampleInput2">Movie or Show Review</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
-        </div>
-
-    </form>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>

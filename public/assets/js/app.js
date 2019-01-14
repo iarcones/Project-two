@@ -154,6 +154,27 @@ $(document).ready(function () {
 
 
     });
+    // $(document).on("click", "#invitefriend", function (event) {
 
+    //     console.log("I clicked invite friend", event)
+    //     var friendPhone =  $("#invitefriend").val().trim();
+    //     var invitation = "first test"
+    //     console.log("friendPhone", friendPhone)
+
+    //     // Send the POST request.
+    //         client.messages.create({
+    //             to: friendPhone,
+    //             from: '+141558284287',
+    //             body: invitation
+    //         }).then(
+    //         function (response) {
+    //             // Reload the page to get the updated list
+    //             console.log(response)
+    //         }
+    //         );
+
+    // });
+
+  
 
 });

@@ -20,15 +20,19 @@ module.exports = (sequelize, DataTypes) => {
       validate: { isEmail: true }
     }
   });
+  
   User.associate = function (models) {
     User.hasMany(models.usermedia);
   };
 
+  // User.associate = function (models) {
+  //   User.hasMany(models.Friend);
+  // };
 
   // associations can be defined here
 
   // Syncs with DB
-  // Customer.sync();
+  // User.sync();
   return User;
 };
 
