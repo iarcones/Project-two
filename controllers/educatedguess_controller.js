@@ -400,8 +400,9 @@ router.get("/friendspage", function (req, res) {
 });
 
 router.post("/invitefriends", function (req, res) {
-    //spotify config
-
+  
+    //twilio config
+    
     var keys = require("./keys.js");
     var twilio = new twilio({
         id: keys.TWILIO_ID,
