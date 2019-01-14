@@ -417,8 +417,9 @@ router.post("/invitefriends", function (req, res) {
             from: '+14155824287',
             to: phoneNumber
         })
-        .then(message => console.log(message.sid))
-        .done();
+        .then(message => console.log(message.sid)
+        )
+        .done(res.render("index-friends"));
 
 });
 
