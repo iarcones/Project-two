@@ -409,37 +409,10 @@ router.get("/friendspage", function (req, res) {
 
 router.post("/invitefriends", function (req, res) {
 
-    // var friendName = req.cookies.firstname;
-    // var phoneNumber = req.body.phonenumber;
-    // var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
-    // console.log("friendPhone", phoneNumber)
-
-    // const accountSid = '';
-    // const authToken = '';
-    // const client = require('twilio')(accountSid, authToken);
-
-    // const accountSid = 
-    // const authToken = 
-    // const client = require('twilio')(accountSid, authToken);
-    //twilio config
-
-    // var keys = require("../keys.js");
-    // console.log('Your environment variable TWILIO_ACCOUNT_SID has the value: ', process.env.TWILIO_ACCOUNT_SID);
-    // var twilio = require("twilio")
-    // var twilioKeys = new twilio({
-    //     id: keys.twilio.id,
-    //     secret: keys.twilio.secret
-    // });
-
-    console.log("I am in the invitefriends route")
-
     require('dotenv').config();
-
-    console.log("I am in the invitefriends route-1")
-
     var id = process.env.TWILIO_ACCOUNT_SID;
     var secret = process.env.TWILIO_TOKEN
-    
+
     console.log("I am in the invitefriends route-2", id)
 
     const client = require('twilio')(id, secret);
@@ -453,7 +426,7 @@ router.post("/invitefriends", function (req, res) {
     var friendId = req.cookies.userid;
     // // var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/invited/" + friendId
     var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
-    console.log("friendPhone", phoneNumber)
+
 
     client.messages
         .create({
