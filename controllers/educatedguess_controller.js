@@ -402,24 +402,24 @@ router.get("/friendspage", function (req, res) {
 router.post("/invitefriends", function (req, res) {
     // route to friends SQL table here
     console.log("I clicked invite friend")
+    var friendName = req.cookies.firstname;
+    var phoneNumber = req.body.phonenumber;
+    var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
+    console.log("friendPhone", phoneNumber)
 
-    // var phoneNumber = req.body.phonenumber;
-    // var invitation = "https://educatedguess.herokuapp.com/"
-    // console.log("friendPhone", phoneNumber)
+    const accountSid = 'AC9723dcccf5692a9d642368a8bac06f4e';
+    const authToken = 'b2e7f40faff188889915b72c64b8438c';
+    const client = require('twilio')(accountSid, authToken);
 
-    // const accountSid = 'AC9723dcccf5692a9d642368a8bac06f4e';
-    // const authToken = 'b2e7f40faff188889915b72c64b8438c';
-    // const client = require('twilio')(accountSid, authToken);
-
-    // client.messages
-    //     .create({
-    //         body: invitation,
-    //         from: '+14155824287',
-    //         to: phoneNumber
-    //     })
-    //     .then(message => console.log(message.sid)
-    //     )
-    //     .done(res.render("index-friends"));
+    client.messages
+        .create({
+            body: invitation,
+            from: '+14155824287',
+            to: phoneNumber
+        })
+        .then(message => console.log(message.sid)
+        )
+        .done(res.render("index-friends"));
 
 });
 
