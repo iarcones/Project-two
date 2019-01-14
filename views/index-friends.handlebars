@@ -22,7 +22,7 @@
                 </div>
             </div>
             {{!-- show friends --}}
-            <div class="row pt-2 pb-5 saved-user-movies">
+            <div class="row mt-2 pb-5 saved-user-movies">
                 <div class="col">
 
                     <ul class="pl-5">
@@ -48,58 +48,52 @@
         </div>
 
         <div class="col-4">
-            {{!-- friends search --}}
-            <div class="row mt-2">
-                <div class="col">
-                    <h2 class="text-center mt-3 mb-3">Find your friends and follow them</h2>
-                </div>
-            </div>
-            <div class="row mb-4 mt-4 justify-content-center">
-
-                <form class="form-inline my-2 my-lg-0" action="/searchfriends" method="POST">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search topics or keywords"
-                        aria-label="Search" name="friendname">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search friends</button>
-                </form>
-
-            </div>
-            <div class="row mt-2">
-                <div class="col">
-                    <h2 class="text-center mt-3 mb-3">Invite your friends</h2>
-                </div>
-            </div>
             {{!-- invite friends --}}
-            {{!-- <div class="row mb-4 mt-4 justify-content-center">
+            <div class="row mt-2">
+                <div class="col">
+                    <h2 class="mt-3 mb-3">Invite your friends</h2>
+                </div>
+            </div>
 
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" name="phonenumber">
-                    <button class="btn btn-outline-success my-2 my-sm-0" id="invitefriend" type="submit">Invite friends</button>
-                </form>
-            </div> --}}
-            <div class="row mb-4 mt-4 justify-content-center">
+            <div class="row mb-2 mt-2 justify-content-center">
 
                 <form class="form-inline my-2 my-lg-0" action="/invitefriends" method="POST">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search topics or keywords"
+                    <input class="form-control mr-sm-2" type="search" placeholder="Phone number"
                         aria-label="Search" name="phonenumber">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Invite friends</button>
                 </form>
             </div>
-            
+
+            {{!-- search friends --}}
+            <div class="row">
+                <div class="col">
+                    <h2 class="mt-4 mb-1">Find your friends</h2>
+                </div>
+            </div>
+            <div class="row mb-4 mt-2 justify-content-center">
+
+                <form class="form-inline my-2 my-lg-0" action="/searchfriends" method="POST">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Friend name"
+                        aria-label="Search" name="friendname">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search friends</button>
+                </form>
+            </div>
+
             {{!-- show users --}}
-            <div class="row pt-2 pb-5 saved-user-movies">
+            <div class="row saved-user-movies">
                 <div class="col">
 
-                    <ul class="pl-5">
+                    <ul class="">
                         {{#each users}}
                         <li>
-                            <div class="row pb-2 align-items-center">
+                            <div class="row align-items-center">
 
-                                <div class="col-5">
+                                <div class="col-10">
                                     <h3>{{user_name}}</h3>
                                 </div>
 
                                 <div class="col-2">
-                                    <button class="addfriend btn-warning btn-sm" data-id="{{this.id}}">Add friend!</button>
+                                    <button class="addfriend btn-warning btn-sm" data-id="{{this.id}}">Add!</button>
                                 </div>
                             </div>
                         </li>
