@@ -19,18 +19,19 @@ $(document).ready(function () {
                 var j = 0;
                 for (j = 0; j < 4 && i < data.length; j++) {
 
-//ORIGNIAL: var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"></div>`)
+//ORIGNIAL: 
+var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"></div>`)
                     //with add to list button
-                    var detail = (`<div class="col-3 float-left">
+    //                 var detail = (`<div class="col-3 float-left">
                     
-                    <div id="add2list">
-    <div class="content">
-                    <img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}">
-                    <a class = "glyphicon glyphicon-plus-sign" href="#">Add to list</a>
-                    </div>     
-                  </div>
+    //                 <div id="add2list">
+    // <div class="content">
+    //                 <img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}">
+    //                 <a class = "glyphicon glyphicon-plus-sign" href="#">Add to list</a>
+    //                 </div>     
+    //               </div>
                     
-                    </div>`)
+    //                 </div>`)
 
                     var movie = movieDiv.concat(detail)
                     var movieDiv = movie;
