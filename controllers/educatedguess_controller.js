@@ -407,8 +407,6 @@ router.post("/invitefriends", function (req, res) {
     var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
     console.log("friendPhone", phoneNumber)
 
-    const accountSid = 'AC9723dcccf5692a9d642368a8bac06f4e';
-    const authToken = 'b2e7f40faff188889915b72c64b8438c';
     const client = require('twilio')(accountSid, authToken);
 
     client.messages
