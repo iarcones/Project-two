@@ -400,6 +400,15 @@ router.get("/friendspage", function (req, res) {
 });
 
 router.post("/invitefriends", function (req, res) {
+    //spotify config
+
+    var keys = require("./keys.js");
+    var twilio = new twilio({
+        id: keys.TWILIO_ID,
+        secret: keys.TWILIO_TOKEN
+    });
+    const client = require('twilio')(id, secret);
+    
     // route to friends SQL table here
     console.log("I clicked invite friend")
     var friendName = req.cookies.firstname;
