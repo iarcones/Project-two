@@ -439,11 +439,11 @@ router.post("/invitefriends", function (req, res) {
 
     var id = process.env.TWILIO_ACCOUNT_SID;
     var secret = process.env.TWILIO_TOKEN
- console.log("I am in the invitefriends route-2")
+ console.log("I am in the invitefriends route-2", id)
 
     const client = require('twilio')(id, secret);
  console.log("I am in the invitefriends route-3")
- 
+
     // route to friends SQL table here
     console.log("I clicked invite friend")
     var friendName = req.cookies.firstname;
