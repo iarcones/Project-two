@@ -95,7 +95,19 @@ $(document).ready(function () {
     });
 
 
-
+    $('#modalratingfriend').on('show.bs.modal', function (event) {
+        var id = $(event.relatedTarget).data('id');
+        var title = $(event.relatedTarget).data('title');
+        var pic = $(event.relatedTarget).data('pic');
+   console.log(id, title, pic)
+        var temp = (`<button class="btn-sm btn-success" id="save-button" data-toggle="modal" data-target="#modalratingfriend" data-id="${id}" data-title="${title}" data-pic="${pic}">Add to Saved!</button>`)
+        var title = (`<h2>${title}</h2`)
+   
+        $(this).find("#buttonsave").empty();
+        $(this).find("#buttonsave").append(temp);
+        $(this).find("#titlemodal").empty();
+        $(this).find("#titlemodal").append(title);
+    });
     // save movies to your profile
 
     $(document).on("click", "#save-button", function (event) {
@@ -122,7 +134,30 @@ $(document).ready(function () {
 
 
     });
+    $(document).on("click", "#save-button-2", function (event) {
 
+        console.log("I clicked", event)
+        var themoviedbid = $(this).data("id");
+        var title = $(this).data("title");
+        var pic = $(this).data("pic");
+        var review = $("#review").val().trim();
+        var rating = $("#rating").val().trim();
+      
+        console.log("themoviedbid", themoviedbid, " / ", title, " / ", pic, " / ", review, " / ", rating)
+
+        // Send the POST request.
+        $.ajax("/api/usermedia/" + themoviedbid + "/" + title + pic + "/"  + review + "/"  + rating, {
+            type: "POST",
+            data: true
+        }).then(
+            function () {
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+
+
+    });
     // on click add to profile page
 
     $(".profile-page").on("click", function (event) {

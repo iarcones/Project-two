@@ -113,11 +113,13 @@ $(document).ready(function () {
             // Sign-out successful.
              // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
              document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-             document.cookie = "useremail; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+             document.cookie = "useremail=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
              document.cookie = "firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
              document.cookie = "lastname=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+             document.cookie = "userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
              console.log("no logged")
-             location.reload();
+            //  location.reload();
+                window.location.href = ("/")
             
         }).catch(function (error) {
             

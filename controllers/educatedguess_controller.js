@@ -237,6 +237,26 @@ router.get("/profile", function (req, res) {
 
 });
 
+router.post("/friendsinfo/:id", function (req, res) {
+    console.log(req.params)
+    var friendId = req.params.id;
+    console.log("friendId" ,friendId)
+
+    db.usermedia.findAll({
+        include: [db.Media],
+        where: {
+            UserId: friendId,
+        }
+    }).then(function (usermedia) {
+
+        var hbsObject = {
+            usermedia: usermedia
+        };
+        console.log(hbsObject)
+        res.render("index-friendinfo", hbsObject);
+    });
+
+});
 
 router.delete("/api/usermedia/:id", function (req, res) {
     console.log("inside delete")
@@ -400,34 +420,50 @@ router.get("/friendspage", function (req, res) {
 });
 
 router.post("/invitefriends", function (req, res) {
-  
+
+
+    // var friendName = req.cookies.firstname;
+    // var phoneNumber = req.body.phonenumber;
+    // var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
+    // console.log("friendPhone", phoneNumber)
+
+    // const accountSid = '';
+    // const authToken = '';
+    // const client = require('twilio')(accountSid, authToken);
+
+    // const accountSid = 
+    // const authToken = 
+    // const client = require('twilio')(accountSid, authToken);
     //twilio config
-    
-    var keys = require("./keys.js");
-    var twilio = new twilio({
-        id: keys.TWILIO_ID,
-        secret: keys.TWILIO_TOKEN
+
+    var keys = require("../keys.js");
+    var twilioKeys = new twilio({
+        id: keys.twilio.id,
+        secret: keys.twilio.secret
     });
-    const client = require('twilio')(id, secret);
-    
+    var id = twilioKeys.id;
+    var secret = twilioKeys.secret
+    console.log(id)
+    // const client = require('twilio')(id, secret);
+
     // route to friends SQL table here
     console.log("I clicked invite friend")
     var friendName = req.cookies.firstname;
     var phoneNumber = req.body.phonenumber;
-    var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
-    console.log("friendPhone", phoneNumber)
+    var friendId = req.cookies.userid;
+    // // var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/invited/" + friendId
+    // var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
+    // console.log("friendPhone", phoneNumber)
 
-    const client = require('twilio')(accountSid, authToken);
-
-    client.messages
-        .create({
-            body: invitation,
-            from: '+14155824287',
-            to: phoneNumber
-        })
-        .then(message => console.log(message.sid)
-        )
-        .done(res.render("index-friends"));
+    // client.messages
+    //     .create({
+    //         body: invitation,
+    //         from: '+14155824287',
+    //         to: phoneNumber
+    //     })
+    //     .then(message => console.log(message.sid)
+    //     )
+    //     .done(res.render("index-friends"));
 
 });
 

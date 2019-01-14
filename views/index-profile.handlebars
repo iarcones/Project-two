@@ -1,14 +1,15 @@
 <div class="container">
 
     <div class="row mb-4 mt-4">
-        <div class="col-8">
-            <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
+         <div class="col-10">
+            <a href="/">
+                <img src="assets/img/logomovie.png" class="img-logo" alt="logo">
+            </a>
         </div>
-
-        <div class="col-2">
+        <div class="col-1">
             <form action="/friendspage" method="GET">
                 {{!-- <form action="/friends" method="GET"> --}}
-                    <button class="friends btn btn-primary btn-sm" type="submit">FRIENDS</button>
+                    <button class="friends btn btn-primary btn-sm" type="submit">My friends</button>
                 </form>
         </div>
 {{!-- 
@@ -16,19 +17,19 @@
             <button class="btn btn-primary btn-sm" id="pagefriends" type="submit">FRIENDS</button>
         </div> --}}
 
-        <div class="col-2">
-            <button class="btn btn-primary btn-sm" id="googelogout" type="submit">Log out</button>
+        <div class="col-1">
+            <button class="btn btn-primary btn-sm" id="logout" type="submit">Log out</button>
         </div>
     </div>
 
     <div class="row mb-4 mt-4">
         <div class="col">
-            <h1 class="text-center">Welcome to your profile page.</h1>
+            <h2 class="text-center">Welcome to your profile page.</h2>
         </div>
     </div>
     <div class="row mt-2">
         <div class="col">
-            <h2 class="text-center mt-3 mb-3">These are your saved movies and shows</h2>
+            <h3 class="text-center mt-3 mb-3">These are your saved movies and shows</h3>
         </div>
     </div>
 
@@ -41,19 +42,19 @@
                 <li>
                     <div class="row  align-items-center">
                         <div class="col-2">
-                            <h3><strong>Photo</strong></h3>
+                            <h3><strong></strong></h3>
                         </div>
-                        <div class="prof-text col-2">
+                        <div class="prof-text col-4">
                             <h3><strong>Title</strong></h3>
                         </div>
                         <div class="prof-text col-3">
                             <h3><strong>Review</strong></h3>
                         </div>
-                        <div class="prof-text col-3">
+                        <div class="prof-text col-1">
                             <h3><strong>Rating</strong></h3>
                         </div>
                         <div class="col-2">
-                            <h3><strong>Remove</strong></h3>
+                            <h3><strong></strong></h3>
                         </div>
                     </div>
                 </li>
@@ -74,14 +75,14 @@
                         <div class="col-2">
                             <img style="width:100px;height:150px;" src="https://image.tmdb.org/t/p/w300/{{{Medium.media_pic}}}">
                         </div>
-                        <div class="prof-text col-2">
-                            <h3>{{Medium.media_name}}</h3>
+                        <div class="prof-text col-4">
+                            <h4>{{Medium.media_name}}</h4>
                         </div>
                         <div class="prof-text col-3">
-                            <h3>{{myreview}}</h3>
+                            <h4>{{myreview}}</h4>
                         </div>
-                        <div class="prof-text col-3">
-                            <h3> {{rating}}</h3>
+                        <div class="prof-text col-1">
+                            <h4>{{rating}}</h4>
                         </div>
                         <div class="col-2">
                             <button class="delete btn-warning btn-sm" data-id="{{this.id}}">Delete!</button>

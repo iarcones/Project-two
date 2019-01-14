@@ -16,9 +16,13 @@ body{
     font-size: 12px;
     line-height: 50px;
     color: white;
-    font-family: 'Nunito', sans-serif;  
     width: 1024px;
     margin: 40px auto;
+}
+
+p{
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
 }
 
 * {
@@ -83,13 +87,25 @@ float: left;
   margin-left: auto;
   margin-right: auto;
   height:70px;
-width:320px
+width:290px
 } 
 
 img{
     width: 200px;
     height: 300px;
 }
+
+
+.profile-button {
+    border: none;
+    background: url('../img/portrait.png') no-repeat top left;
+    padding: 8px;
+    height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  Background-size: 100%;
+}
+
 
 * {
     box-sizing: border-box;
@@ -103,14 +119,25 @@ h1 {
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 34px;
     font-family: 'Coiny', cursive;
 }
 
 h3 {
    
-    font-size: 16px;
+    font-size: 27px;
     color: white;
+    font-family: 'Titillium Web', sans-serif; 
+    /* font-weight: bold; */
+    /* font-family: 'Coiny', cursive; */
+}
+
+
+h4 {
+   
+    font-size: 18px;
+    color: white;
+    font-family: 'Titillium Web', sans-serif; 
     /* font-weight: bold; */
     /* font-family: 'Coiny', cursive; */
 }
