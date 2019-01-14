@@ -323,7 +323,7 @@ router.post("/search", function (req, res) {
             var movie = {};
             movie.pic = response.data.results[i].poster_path
             movie.title = response.data.results[i].title;
-            movie.year = response.data.results[i].release_date;
+            movie.year = response.data.results[i].release_date.substr(0,4);
             movie.id = response.data.results[i].id;
             movies.push(movie);
             // namesAndYears[response.data.Search[i].Title]=response.data.Search[i].Year;
@@ -421,7 +421,6 @@ router.get("/friendspage", function (req, res) {
 
 router.post("/invitefriends", function (req, res) {
 
-
     // var friendName = req.cookies.firstname;
     // var phoneNumber = req.body.phonenumber;
     // var invitation = "Your friend " + friendName + " invite you to join https://educatedguess.herokuapp.com/"
@@ -437,15 +436,16 @@ router.post("/invitefriends", function (req, res) {
     //twilio config
 
     // var keys = require("../keys.js");
-
-    require('dotenv').config();
-    console.log('Your environment variable TWILIO_ACCOUNT_SID has the value: ', process.env.TWILIO_ACCOUNT_SID);
+    // console.log('Your environment variable TWILIO_ACCOUNT_SID has the value: ', process.env.TWILIO_ACCOUNT_SID);
     // var twilio = require("twilio")
     // var twilioKeys = new twilio({
     //     id: keys.twilio.id,
     //     secret: keys.twilio.secret
     // });
 
+
+    require('dotenv').config();
+   
     var id = process.env.TWILIO_ACCOUNT_SID;
     var secret = process.env.TWILIO_TOKEN
 
