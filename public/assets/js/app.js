@@ -12,33 +12,33 @@ $(document).ready(function () {
             var noactive = (`<div class="carousel-item row no-gutters">`);
 
             var movieDiv = active;
-            
+
 
             for (var i = 0; i < data.length; i++) {
 
                 var j = 0;
                 for (j = 0; j < 4 && i < data.length; j++) {
 
-//ORIGNIAL: 
-var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"></div>`)
+                    //ORIGNIAL: 
+                    var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"></div>`)
                     //with add to list button
-    //                 var detail = (`<div class="col-3 float-left">
-                    
-    //                 <div id="add2list">
-    // <div class="content">
-    //                 <img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}">
-    //                 <a class = "glyphicon glyphicon-plus-sign" href="#">Add to list</a>
-    //                 </div>     
-    //               </div>
-                    
-    //                 </div>`)
+                    //                 var detail = (`<div class="col-3 float-left">
+
+                    //                 <div id="add2list">
+                    // <div class="content">
+                    //                 <img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}">
+                    //                 <a class = "glyphicon glyphicon-plus-sign" href="#">Add to list</a>
+                    //                 </div>     
+                    //               </div>
+
+                    //                 </div>`)
 
                     var movie = movieDiv.concat(detail)
                     var movieDiv = movie;
                     i++;
                 }
                 i--
-                
+
 
                 $("#movie-display").append(movieDiv);
                 var movieDiv = noactive;
@@ -75,7 +75,6 @@ var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https:/
 
         })
 
-
     // delete movies to your profile
     $(".delete").on("click", function (event) {
         console.log("I clicked delete", event)
@@ -99,19 +98,32 @@ var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https:/
         var id = $(event.relatedTarget).data('id');
         var title = $(event.relatedTarget).data('title');
         var pic = $(event.relatedTarget).data('pic');
-   
+
         var temp = (`<button class="btn-sm btn-success" id="save-button" data-toggle="modal" data-target="#modalrating" data-id="${id}" data-title="${title}" data-pic="${pic}">Add to Saved!</button>`)
         var title = (`<h2>${title}</h2`)
-   
+
         $(this).find("#buttonsave").empty();
         $(this).find("#buttonsave").append(temp);
         $(this).find("#titlemodal").empty();
         $(this).find("#titlemodal").append(title);
     });
 
+    $('#modalratingfriend').on('show.bs.modal', function (event) {
+        var id = $(event.relatedTarget).data('id');
+        var title = $(event.relatedTarget).data('title');
+        var pic = $(event.relatedTarget).data('pic');
+        console.log(id, title, pic)
+        var temp = (`<button class="btn-sm btn-success" id="save-button-f" data-toggle="modal" data-target="#modalratingfriend" data-id="${id}">Add to Saved!</button>`)
 
+        var title = (`<h2>${title}</h2`)
 
-    // save movies to your profile
+        $(this).find("#buttonsave").empty();
+        $(this).find("#buttonsave").append(temp);
+        $(this).find("#titlemodal").empty();
+        $(this).find("#titlemodal").append(title);
+    });
+
+    // save movies to your profile from index registered
 
     $(document).on("click", "#save-button", function (event) {
 
@@ -121,11 +133,11 @@ var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https:/
         var pic = $(this).data("pic");
         var review = $("#review").val().trim();
         var rating = $("#rating").val().trim();
-      
+
         console.log("themoviedbid", themoviedbid, " / ", title, " / ", pic, " / ", review, " / ", rating)
 
         // Send the POST request.
-        $.ajax("/api/usermedia/" + themoviedbid + "/" + title + pic + "/"  + review + "/"  + rating, {
+        $.ajax("/api/usermedia/" + themoviedbid + "/" + title + pic + "/" + review + "/" + rating, {
             type: "POST",
             data: true
         }).then(
@@ -138,6 +150,30 @@ var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https:/
 
     });
 
+    // save movies to your profile from friendinfo
+
+    $(document).on("click", "#save-button-f", function (event) {
+
+        console.log("I clicked", event)
+        var mediaId = $(this).data("id");
+        var review = $("#review").val().trim();
+        var rating = $("#rating").val().trim();
+
+        console.log("mediaId", mediaId, " / ", review, " / ", rating)
+
+        // Send the POST request.
+        $.ajax("/api/usermedia/friend/" + mediaId + "/" + review + "/" + rating, {
+            type: "POST",
+            data: true
+        }).then(
+            function () {
+                // Reload the page to get the updated list
+                location.reload();
+            }
+        );
+
+
+    });
     // on click add to profile page
 
     $(".profile-page").on("click", function (event) {
@@ -153,7 +189,7 @@ var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https:/
 
         console.log("I clicked add friend", event)
         var friendid = $(this).data("id");
-        
+
         console.log("themoviedbid", friendid)
 
         // Send the POST request.
@@ -169,27 +205,4 @@ var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https:/
 
 
     });
-    // $(document).on("click", "#invitefriend", function (event) {
-
-    //     console.log("I clicked invite friend", event)
-    //     var friendPhone =  $("#invitefriend").val().trim();
-    //     var invitation = "first test"
-    //     console.log("friendPhone", friendPhone)
-
-    //     // Send the POST request.
-    //         client.messages.create({
-    //             to: friendPhone,
-    //             from: '+141558284287',
-    //             body: invitation
-    //         }).then(
-    //         function (response) {
-    //             // Reload the page to get the updated list
-    //             console.log(response)
-    //         }
-    //         );
-
-    // });
-
-  
-
 });

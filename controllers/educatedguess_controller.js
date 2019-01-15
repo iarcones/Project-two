@@ -8,7 +8,6 @@ var db = require("../models");
 
 ////////////// ROUTES
 
-
 ///////  HTML ROUTES
 
 // first need to check if user is registered
@@ -105,10 +104,7 @@ router.get("/tv", function (req, res) {
 
 });
 
-
-
 ///////  API ROUTES
-
 
 // users table here-post
 router.post("/api/user", function (req, res) {
@@ -140,7 +136,6 @@ router.post("/api/user", function (req, res) {
 });
 
 
-
 // Update media table here with all our API call when user inputs data
 // should this be POST or PUT
 
@@ -151,18 +146,6 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function
     var pic = req.params.pic;
     var review = req.params.review;
     var rating = req.params.rating;
-    // var ratingNumber = req.params.rating;
-    //    var ratingToSend="";
-    //    function translateRatingToStar(rating){
-    //        var number = parseInt(rating);
-    //        for (var i=0; i<number;i++){
-    //            ratingToSend+="*";
-    //        }
-    //        return ratingToSend;
-    //    }
-    //    rating = translateRatingToStar(ratingNumber);
-
-
 
     db.Media.findOne({
         where: {
@@ -202,6 +185,26 @@ router.post("/api/usermedia/:themoviedbid/:title/:pic/:review/:rating", function
 
     })
 })
+
+router.post("/api/usermedia/friend/:themoviedbid/:review/:rating", function (req, res) {
+    /// find Media if exist update and go to see if mediauser exist or not and update or create
+    var themoviedbid = req.params.themoviedbid;
+    var review = req.params.review;
+    var rating = req.params.rating;
+
+    db.usermedia.create({
+        MediumId: themoviedbid,
+        UserId: req.cookies.userid,
+        myreview: review,
+        rating: rating
+    })
+        .then(function (data) {
+            res.json(data);
+        });
+})
+
+
+
 
 
 
@@ -258,8 +261,6 @@ router.delete("/api/usermedia/:id", function (req, res) {
     });
 });
 
-
-
 ////// OLEG
 
 // var ratingNumber = req.params.rating;
@@ -287,10 +288,6 @@ var APIcallsMyMovieSearch = {
 //currently this route handles the search for a single movie by logged in user
 // var APIcallsMyMovieSearch = require("APIcallsMyMovieSearch");
 router.post("/search", function (req, res) {
-
-    // var getMovieInfoURL="https://www.omdbapi.com/?t=" + req.body.movieTitle + "&y=&plot=short&apikey=trilogy";
-
-    // var getMovieInfoURL = "http://www.omdbapi.com/?s=" + req.body.movieTitle + "&page=all&apikey=trilogy";
 
     var getMovieInfoURL = "https://api.themoviedb.org/3/search/movie?api_key=32a91bda53591f9bf3267b9088686a93&language=en-US&query=" + req.body.movieTitle + "&page=1&include_adult=false"
 
@@ -340,14 +337,6 @@ router.post("/search", function (req, res) {
     console.log("after redirect");
 
 });
-
-
-///// FRIENDS /////
-
-
-// router.get("/friendspage", function (req, res) {
-//     res.render("index-friends");
-// }); 
 
 
 router.post("/searchfriends", function (req, res) {
@@ -411,7 +400,7 @@ router.post("/invitefriends", function (req, res) {
 
     require('dotenv').config();
     var id = process.env.TWILIO_ACCOUNT_SID;
-    var secret = process.env.TWILIO_TOKEN
+    var secret = process.env.TWILIO_TOKEN;
 
     console.log("I am in the invitefriends route-2", id)
 

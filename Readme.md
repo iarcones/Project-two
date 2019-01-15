@@ -54,12 +54,12 @@ Firebase
 Sequelize
 Heroku
 Bootstrap library
-TMDB API / OMDB API
+TMDB API 
+Twilio SMS
 
 ## Future Intentions
 
 Add Alexa Skill.
-Add Twilio notifications.
 Integrate with Youtube/Hulu/Netflix.
 
 

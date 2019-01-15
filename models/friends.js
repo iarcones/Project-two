@@ -20,7 +20,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-
   Friend.associate = function(models) {
     console.log("inside friend  associate")
     Friend.belongsTo(models.User, {

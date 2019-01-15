@@ -46,21 +46,3 @@ module.exports = (sequelize, DataTypes) => {
   // Media.sync();
   return Media;
 };
-
-
-
-// $(function() {
-//   alert("Hi");
-//   $.ajax({
-//       url: "http://private-174c-themoviedb.apiary.io/3/search/movie?api_key=[pastedMyApiKeyHere]&callback=test",
-//       contentType: "application/json",
-//       type: "GET",
-//       crossDomain: true,
-//       success: function(data) {
-//           alert("It worked");
-//       },
-//       error: function(err) {
-//           alert(JSON.stringify(err));
-//       }
-//   });
-// });
