@@ -11,6 +11,8 @@ Until now.
 
 With educated guess - you can discover media thats less heavily marketed yet beloved by your friends. And also avoid wasting time on schlok. 
 
+![](./public/assets/img/prj-gif.gif)
+
 ![](./public/assets/img/concept.jpg)
 
 ## Why do we need EG?
@@ -68,9 +70,9 @@ Sequelize
 Heroku
 Bootstrap library
 TMDB API / OMDB API
+Twilio SMS API
 
 ## Future Intentions
 
 Add Alexa Skill.
-Add Twilio notifications.
 Integrate with Youtube/Hulu/Netflix.
