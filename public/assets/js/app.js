@@ -12,34 +12,30 @@ $(document).ready(function () {
             var noactive = (`<div class="carousel-item row no-gutters">`);
 
             var movieDiv = active;
+            var movieDivLogged = active;
 
 
             for (var i = 0; i < data.length; i++) {
 
                 var j = 0;
                 for (j = 0; j < 4 && i < data.length; j++) {
+                    ////////START
 
-                    //ORIGNIAL: 
-                    var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"></div>`)
-                    //with add to list button
-                    //                 var detail = (`<div class="col-3 float-left">
-
-                    //                 <div id="add2list">
-                    // <div class="content">
-                    //                 <img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}">
-                    //                 <a class = "glyphicon glyphicon-plus-sign" href="#">Add to list</a>
-                    //                 </div>     
-                    //               </div>
-
-                    //                 </div>`)
-
-                    var movie = movieDiv.concat(detail)
+                    var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"></div>`);
+                    var movie = movieDiv.concat(detail);
                     var movieDiv = movie;
+
+
+                    //new
+                    var detail2 = (`<div class="col-3 float-left"><div id="add2list"><div class="content"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"><a href="#">add to list</a></div></div></div>`);
+                    var movie2 = movieDivLogged.concat(detail2);
+                    var movieDivLogged = movie2;
                     i++;
                 }
                 i--
 
-
+                $("#movie-display-logged").append(movieDivLogged);
+                var movieDivLogged = noactive;
                 $("#movie-display").append(movieDiv);
                 var movieDiv = noactive;
             }
@@ -55,22 +51,33 @@ $(document).ready(function () {
             var noactive = (`<div class="carousel-item row no-gutters">`);
 
             var tvDiv = active;
+            var tvDivLogged = active;
 
             for (var i = 0; i < data.length; i++) {
 
                 var j = 0;
                 for (j = 0; j < 4 && i < data.length; j++) {
-
+                    ///ORIGINAL    
                     var detail = (`<div class="col-3 float-left"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"></div>`)
                     var tv = tvDiv.concat(detail)
                     var tvDiv = tv;
+
+
+                    ////NEW    
+                    var detail2 = (`<div class="col-3 float-left"><div id="add2list"><div class="content"><img class="img-fluid" src="https://image.tmdb.org/t/p/w300/${data[i].poster_path}"><a href="#">add to list</a></div></div></div>`);
+                    var tv2 = tvDivLogged.concat(detail2);
+                    var tvDivLogged = tv2;
+
                     i++;
 
                 }
                 i--
-
+                $("#tv-display-logged").append(tvDivLogged);
+                var tvDivLogged = noactive;
                 $("#tv-display").append(tvDiv);
                 var tvDiv = noactive;
+
+                ///////////END                
             }
 
         })
